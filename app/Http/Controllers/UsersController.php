@@ -74,8 +74,8 @@ class UsersController extends Controller
           $user->middle_name=$request->get('middle_name');
           $user->last_name=$request->get('last_name');
           $user->gender= $request->get('gender');
-          $user->age = 1;
           $user->dob= date('Y-m-d', strtotime($request->get('dob')));
+          $user->age = $request->get('age');
           $user->hobby = $request->get('hobby');
           $user->address = $request->get('address');
           $user->city = $request->get('city');
@@ -158,8 +158,8 @@ class UsersController extends Controller
           $user->middle_name = $request->get('middle_name');
           $user->last_name = $request->get('last_name');
           $user->gender = $request->get('gender');
-          $user->age = 1;
           $user->dob = date('Y-m-d', strtotime($request->get('dob')));
+          $user->age = $request->get('age');
           $user->hobby = $request->get('hobby');
           $user->address = $request->get('address');
           $user->city = $request->get('city');

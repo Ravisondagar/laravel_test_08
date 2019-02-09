@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 use App\User;
+use Former;
+use Validator;
 
 class ProjectsController extends Controller
 {
@@ -15,8 +17,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $project = Project::all(); 
-        return view('projects.index',compact('project'));
+        $projects = Project::all(); 
+        return view('projects.index',compact('projects'));
     }
 
     /**
@@ -27,7 +29,7 @@ class ProjectsController extends Controller
     public function create()
     {
         $users = User::all()->pluck('id','name');
-        return view('project.add',compact('users'));
+        return view('projects.add',compact('users'));
     }
 
     /**
@@ -39,22 +41,15 @@ class ProjectsController extends Controller
     public function store(Request $request)
     {
         $rules=[
+          'user_id' => 'required',
           'name' => 'required',
-          'middle_name' => 'required',
-          'last_name' => 'required',
-          'gender' => 'required',
-          'dob' => 'required',
-          'hobby' => 'required',
-          'address' => 'required',
-          'city' => 'required',
-          'state' => 'required',
-          'country' => 'required',
+          'hours' => 'required',
         ];
 
         // Messages for validation
         $messages=[
-          'name.required' => 'Please enter first name.',
-          'last_name.required' => 'Please enter last name.',
+          'name.required' => 'Please enter name.',
+          'hours.required' => 'Please enter hours.',
         ];
         
         // Make validator with rules and messages
@@ -67,24 +62,16 @@ class ProjectsController extends Controller
         // If no error than go inside otherwise go to the catch section
         try
         {
-          $user = New User;
-          $user->name=$request->get('name');
-          $user->middle_name=$request->get('middle_name');
-          $user->last_name=$request->get('last_name');
-          $user->gender= $request->get('gender');
-          $user->age = 1;
-          $user->dob= date('Y-m-d', strtotime($request->get('dob')));
-          $user->hobby = $request->get('hobby');
-          $user->address = $request->get('address');
-          $user->city = $request->get('city');
-          $user->state = $request->get('state');
-          $user->country = $request->get('country');
-          $user->save();
-          return redirect()->route('users.index')->withSuccess("Insert record successfully.");
+          $project = New Project;
+          $project->name = $request->get('name');
+          $project->user_id = $request->get('user_id');
+          $project->hours = $request->get('hours');
+          $project->save();
+          return redirect()->route('projects.index')->withSuccess("Insert record successfully.");
         }
         catch(\Exception $e)
         {
-          return redirect()->route('users.index')->withError('Something went wrong, Please try after sometime.');
+          return redirect()->route('projects.index')->withError('Something went wrong, Please try after sometime.');
         }
     }
 
@@ -94,9 +81,10 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($id)
     {
-        //
+        $project = Project::find($id);
+        return view('projects.show',compact('project'));
     }
 
     /**
@@ -105,9 +93,11 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($id)
     {
-        //
+        $users = User::all()->pluck('id','name');
+        $project = Project::find($id);
+        return view('projects.edit',compact('users','project'));
     }
 
     /**
@@ -117,9 +107,41 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $id)
     {
-        //
+        $rules=[
+          'user_id' => 'required',
+          'name' => 'required',
+          'hours' => 'required',
+        ];
+
+        // Messages for validation
+        $messages=[
+          'name.required' => 'Please enter name.',
+          'hours.required' => 'Please enter hours.',
+        ];
+        
+        // Make validator with rules and messages
+        $validator = Validator::make($request->all(),$rules,$messages);
+        // If validator fails than it will redirect back and gives error otherwise go to try catch section
+        if ($validator->fails()) { 
+          //Former::withErrors($validator);
+          return redirect()->back()->withErrors($validator)->withInput();
+        }
+        // If no error than go inside otherwise go to the catch section
+        try
+        {
+          $project = Project::find($id);
+          $project->name = $request->get('name');
+          $project->user_id = $request->get('user_id');
+          $project->hours = $request->get('hours');
+          $project->update();
+          return redirect()->route('projects.index')->withSuccess("Update record successfully.");
+        }
+        catch(\Exception $e)
+        {
+          return redirect()->route('projects.index')->withError('Something went wrong, Please try after sometime.');
+        }
     }
 
     /**
@@ -128,8 +150,10 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+        $project->delete();
+        return redirect()->route('projects.index')->withSuccess('Deleted successfully');
     }
 }

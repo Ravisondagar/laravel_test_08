@@ -12,7 +12,7 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit User</li>
+									<li class="breadcrumb-item active" aria-current="page">Edit Project</li>
 								</ol>
 							</nav>
 						</div>
@@ -22,89 +22,39 @@
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="clearfix">
 						<div class="pull-left">
-							<h4 class="text-blue">Edit User</h4>
+							<h4 class="text-blue">Edit Project</h4>
 						</div>
-					</div><br>
-					<form method="POST" action="{!! route('users.update',$user->id) !!}">
+					</div>
+					<form method="POST" action="{!! route('projects.update',$project->id) !!}">
 						@csrf
 						@method('PATCH')
 						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Select User</label>
+							<div class="col-sm-12 col-md-10">
+								<select class="custom-select col-12" name="user_id">
+									<option selected="" value="">Choose User</option>
+									@foreach($users as $key => $user )
+										<option value="{!! $user!!}" @if($user == $user) selected @endif>{!! $key !!}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="Johnny Brown" value="{!! $user->name !!}" name="name">
+								<input class="form-control" type="text" placeholder="Johnny Brown" name="name" value="{!! $project->name !!}">
 								@if($errors->has('name'))<span>{!! $errors->first('name') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Middle Name</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Hours</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" placeholder="" value="{!! $user->middle_name !!}" type="text" name="middle_name">
-								@if($errors->has('middle_name'))<span>{!! $errors->first('middle_name') !!}</span>@endif
+								<input class="form-control" placeholder="" value="{!! $project->hours !!}" type="text" name="hours">
+								@if($errors->has('hours'))<span>{!! $errors->first('hours') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Last name</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control"  type="text" name="last_name" value="{!! $user->last_name !!}">
-								@if($errors->has('last_name'))<span>{!! $errors->first('last_name') !!}</span>@endif
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-12">
-							<label class="weight-600">Gender</label>
-							<div class="custom-control custom-radio mb-5">
-								<input type="radio" id="customRadio1" name="gender" class="custom-control-input" value="male" checked>
-								<label class="custom-control-label" for="customRadio1">Male</label>
-							</div>
-							<div class="custom-control custom-radio mb-5">
-								<input type="radio" id="customRadio2" name="gender" class="custom-control-input" value="female">
-								<label class="custom-control-label" for="customRadio2">Female</label>
-							</div>
-							@if($errors->has('gender'))<span>{!! $errors->first('gender') !!}</span>@endif
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Date of birth</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" placeholder="Select Date" type="text" name="dob">
-								@if($errors->has('dob'))<span>{!! $errors->first('dob') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">hobby</label>
-							<div class="col-sm-12 col-md-10">
-								<textarea name="hobby" class="form-control">{!! $user->hobby !!}</textarea>
-								@if($errors->has('hobby'))<span>{!! $errors->first('hobby') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">address</label>
-							<div class="col-sm-12 col-md-10">
-								<textarea name="address" class="form-control">{!! $user->address !!}</textarea>
-								@if($errors->has('address'))<span>{!! $errors->first('address') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">city</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="city" value="{!! $user->city !!}">
-								@if($errors->has('city'))<span>{!! $errors->first('city') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">State</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="state" value="{!! $user->state !!}"> 
-								@if($errors->has('state'))<span>{!! $errors->first('state') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Country</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="country" value="{!! $user->country !!}">
-								@if($errors->has('country'))<span>{!! $errors->first('country') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<input type="submit" name="submit" value="Save" class="btn btn-primary">
+							<input type="submit" name="submit" value="Update" class="btn btn-primary">
 						</div>
 					</form>
 				</div>

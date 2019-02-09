@@ -64,7 +64,8 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Date of birth</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" placeholder="Select Date" type="text" name="dob">
+								<input class="form-control date-picker" id="dob" placeholder="Select Date" type="text" name="dob" value="{!! $user->dob !!}">
+								<input type="hidden" name="age" id="age" value="{!! $user->age !!}">
 								@if($errors->has('dob'))<span>{!! $errors->first('dob') !!}</span>@endif
 							</div>
 						</div>
@@ -104,7 +105,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<input type="submit" name="submit" value="Save" class="btn btn-primary">
+							<input type="submit" name="submit" value="Update" id="submit" class="btn btn-primary">
 						</div>
 					</form>
 				</div>
@@ -112,4 +113,31 @@
 			</div>
 		</div>
 	</div>
+@endsection
+@section('script')
+<script type="text/javascript">
+var date = new Date();
+    var currentMonth = date.getMonth();
+    var currentDate = date.getDate();
+    var currentYear = date.getFullYear();
+    $("#dob").datepicker({
+        maxDate: new Date(currentYear, currentMonth, currentDate),
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '-115:+0',
+        language: 'en',
+        autoClose: true,
+        dateFormat: 'yyyy-mm-dd',
+	});
+$('#submit').click(function(){
+	var dob = $('#dob').val();
+	if (dob == '') {
+		dob = '{!! $user->dob !!}';
+	}
+	var year = new Date(dob);
+	var get_year = year.getFullYear();
+	var age = currentYear - get_year;
+	$('#age').val(age);
+});
+</script>
 @endsection
