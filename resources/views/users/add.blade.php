@@ -48,8 +48,8 @@
 								@if($errors->has('last_name'))<span>{!! $errors->first('last_name') !!}</span>@endif
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
-							<label class="weight-600">Gender</label>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Gender</label>
 							<div class="custom-control custom-radio mb-5">
 								<input type="radio" id="customRadio1" name="gender" class="custom-control-input" value="male" checked>
 								<label class="custom-control-label" for="customRadio1">Male</label>

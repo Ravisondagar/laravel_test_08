@@ -8,7 +8,6 @@
 <body>
 	@include('include/header')
 	@include('include/sidebar')
-	@include('include/flase')
 		@yield('content')
 		<script src="{!! asset('js/main.js') !!}"></script>
 		@yield('script')

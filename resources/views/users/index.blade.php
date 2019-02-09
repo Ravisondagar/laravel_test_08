@@ -18,6 +18,16 @@
 						</div>
 					</div>
 				</div>
+				@if ($message = Session::get('success'))
+				        <div class="alert alert-success">
+				            <p>{{ $message }}</p>
+				        </div>
+				@endif
+				@if ($message = Session::get('error'))
+				        <div class="alert alert-warning">
+				            <p>{{ $message }}</p>
+				        </div>
+				@endif
 				<!-- Simple Datatable start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="clearfix mb-20">
@@ -57,7 +67,9 @@
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" href="{!! route('users.show',$user->id) !!}"><i class="fa fa-eye"></i> View</a>
 												<a class="dropdown-item" href="{!! route('users.edit',$user->id) !!}"><i class="fa fa-pencil"></i> Edit</a>
-												<a href="{!!route('users.destroy',$user->id)!!}" class="btn btn-sm btn-danger" data-confirm="Are you sure want to delete?">Delete</a>
+												{!! Former::open()->action( URL::route("users.destroy",$user->id) )->method('delete')->class('form'.$user->id) !!}
+													<a class="dropdown-item submit" href="javascript:;" data-id="{{$user->id}}" ><i class="fa fa-trash"></i> Delete</a>
+												{!! Former::close() !!}
 											</div>
 										</div>
 									</td>
@@ -72,68 +84,74 @@
 	</div>
 @endsection
 @section('script')
-	<script>
-		
-			jQuery("[data-confirm]").bind("click",function(e){
-				e.preventDefault();    
-				var message = jQuery(this).data('confirm')? jQuery(this).data('confirm') : 'Are you sure?';    
-				if(confirm(message))    
-				{        
-					var form = jQuery('<form />').attr('method','post').attr('action',jQuery(this).attr('href'));    
-					console.log(form);
-					message != "Are you sure want to logout?" ? jQuery('<input />').attr('type','hidden').attr('name','_method').attr('value','delete').appendTo(form) : "";      
-					jQuery('<input />').attr('type','hidden').attr('name','_token').attr('value',jQuery('meta[name="_token"]').attr('content')).appendTo(form);      
-					jQuery('body').append(form);      
-					form.submit();    
-				}  
-			});
-			$('document').ready(function(e){
-			$('.data-table').DataTable({
-				scrollCollapse: true,
-				autoWidth: false,
-				responsive: true,
-				columnDefs: [{
-					targets: "datatable-nosort",
-					orderable: false,
-				}],
-				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-				"language": {
-					"info": "_START_-_END_ of _TOTAL_ entries",
-					searchPlaceholder: "Search"
-				},
-			});
-			$('.data-table-export').DataTable({
-				scrollCollapse: true,
-				autoWidth: false,
-				responsive: true,
-				columnDefs: [{
-					targets: "datatable-nosort",
-					orderable: false,
-				}],
-				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-				"language": {
-					"info": "_START_-_END_ of _TOTAL_ entries",
-					searchPlaceholder: "Search"
-				},
-				dom: 'Bfrtip',
-				buttons: [
-				'copy', 'csv', 'pdf', 'print'
-				]
-			});
-			var table = $('.select-row').DataTable();
-			$('.select-row tbody').on('click', 'tr', function () {
-				if ($(this).hasClass('selected')) {
-					$(this).removeClass('selected');
-				}
-				else {
-					table.$('tr.selected').removeClass('selected');
-					$(this).addClass('selected');
-				}
-			});
-			var multipletable = $('.multiple-select-row').DataTable();
-			$('.multiple-select-row tbody').on('click', 'tr', function () {
-				$(this).toggleClass('selected');
-			});
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	$(document).on('click','.submit',function(e){
+		var r=$(this).data('id');
+			e.preventDefault(this);
+			swal({
+					  title: "Are you sure?",
+					  text: "Once deleted, you will not be able to recover this imaginary file!",
+					  icon: "warning",
+					  buttons: true,
+					  dangerMode: true,
+					})
+					.then((willDelete) => {
+					  if (willDelete) {	
+					    $('.form'+r).submit();
+					  } else {
+					    //swal("Your imaginary file is safe!");
+					    return false;
+					  }
+				});
+	});	
+	$('document').ready(function(e){
+		$('.data-table').DataTable({
+			scrollCollapse: true,
+			autoWidth: false,
+			responsive: true,
+			columnDefs: [{
+				targets: "datatable-nosort",
+				orderable: false,
+			}],
+			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+			"language": {
+				"info": "_START_-_END_ of _TOTAL_ entries",
+				searchPlaceholder: "Search"
+			},
 		});
-	</script>
+		$('.data-table-export').DataTable({
+			scrollCollapse: true,
+			autoWidth: false,
+			responsive: true,
+			columnDefs: [{
+				targets: "datatable-nosort",
+				orderable: false,
+			}],
+			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+			"language": {
+				"info": "_START_-_END_ of _TOTAL_ entries",
+				searchPlaceholder: "Search"
+			},
+			dom: 'Bfrtip',
+			buttons: [
+			'copy', 'csv', 'pdf', 'print'
+			]
+		});
+		var table = $('.select-row').DataTable();
+		$('.select-row tbody').on('click', 'tr', function () {
+			if ($(this).hasClass('selected')) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		});
+		var multipletable = $('.multiple-select-row').DataTable();
+		$('.multiple-select-row tbody').on('click', 'tr', function () {
+			$(this).toggleClass('selected');
+		});
+	});
+</script>
 @endsection

@@ -3,7 +3,7 @@
 		<div class="header-right">
 			<div class="brand-logo">
 				<a href="index.php">
-					<img src="vendors/images/logo.png" alt="" class="mobile-logo">
+					<img src="{!! asset('vendors/images/logo.png') !!}" alt="" class="mobile-logo">
 				</a>
 			</div>
 			<div class="menu-icon">
@@ -37,49 +37,49 @@
 							<ul>
 								<li>
 									<a href="#">
-										<img src="vendors/images/img.jpg" alt="">
+										<img src="{!! asset('vendors/images/img.jpg') !!}" alt="">
 										<h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="vendors/images/img.jpg" alt="">
+										<img src="{!! asset('vendors/images/img.jpg') !!}" alt="">
 										<h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="vendors/images/img.jpg" alt="">
+										<img src="{!! asset('vendors/images/img.jpg') !!}" alt="">
 										<h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="vendors/images/img.jpg" alt="">
+										<img src="{!! asset('vendors/images/img.jpg') !!}" alt="">
 										<h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="vendors/images/img.jpg" alt="">
+										<img src="{!! asset('vendors/images/img.jpg') !!}" alt="">
 										<h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="vendors/images/img.jpg" alt="">
+										<img src="{!! asset('vendors/images/img.jpg') !!}" alt="">
 										<h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="vendors/images/img.jpg" alt="">
+										<img src="{!! asset('vendors/images/img.jpg') !!}" alt="">
 										<h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
 									</a>
