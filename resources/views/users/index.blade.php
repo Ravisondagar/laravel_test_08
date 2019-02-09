@@ -7,12 +7,12 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>DataTable</h4>
+								<h4>Users</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+									<li class="breadcrumb-item active" aria-current="page">Users</li>
 								</ol>
 							</nav>
 						</div>
@@ -32,8 +32,7 @@
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="clearfix mb-20">
 						<div class="pull-left">
-							<h5 class="text-blue">Data Table Simple</h5>
-							<p class="font-14">you can find more options <a class="text-primary" href="https://datatables.net/" target="_blank">Click Here</a></p>
+							<h5 class="text-blue">Users</h5>
 						</div>
 						<div class="text-right">
 							<a href="{!! route('users.create') !!}" class="btn btn-primary">Add User</a>
