@@ -24,7 +24,10 @@
 						<div class="pull-left">
 							<h4 class="text-blue">Add Project</h4>
 						</div>
-					</div>
+						<div class="pull-right">
+							<a href="{!! route('projects.index') !!}" data-toggle="tooltip" title="Back to Users" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+						</div>
+					</div><br>
 					<form method="post" action="{!! route('projects.store') !!}">
 						@csrf
 						<div class="form-group row">

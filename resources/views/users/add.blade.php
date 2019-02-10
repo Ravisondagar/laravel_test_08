@@ -12,7 +12,7 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Form Basic</li>
+									<li class="breadcrumb-item active" aria-current="page">Add User</li>
 								</ol>
 							</nav>
 						</div>
@@ -24,27 +24,30 @@
 						<div class="pull-left">
 							<h4 class="text-blue">Add User</h4>
 						</div>
-					</div>
+						<div class="pull-right">
+							<a href="{!! route('users.index') !!}" data-toggle="tooltip" title="Back to Users" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+						</div>
+					</div><br>
 					<form method="post" action="{!! route('users.store') !!}">
 						@csrf
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="Johnny Brown" name="name">
+								<input class="form-control" type="text" placeholder="Johnny Brown" name="name" value="{{ old('name') }}">
 								@if($errors->has('name'))<span>{!! $errors->first('name') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Middle Name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" placeholder="" type="text" name="middle_name">
+								<input class="form-control" placeholder="" type="text" name="middle_name" value="{{ old('middle_name') }}">
 								@if($errors->has('middle_name'))<span>{!! $errors->first('middle_name') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Last name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="" type="text" name="last_name">
+								<input class="form-control" value="" type="text" name="last_name" value="{{ old('last_name') }}">
 								@if($errors->has('last_name'))<span>{!! $errors->first('last_name') !!}</span>@endif
 							</div>
 						</div>
@@ -71,35 +74,35 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">hobby</label>
 							<div class="col-sm-12 col-md-10">
-								<textarea name="hobby" class="form-control"></textarea>
+								<textarea name="hobby" class="form-control">{{ old('hobby') }}</textarea>
 								@if($errors->has('hobby'))<span>{!! $errors->first('hobby') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">address</label>
 							<div class="col-sm-12 col-md-10">
-								<textarea name="address" class="form-control"></textarea>
+								<textarea name="address" class="form-control">{{ old('address') }}</textarea>
 								@if($errors->has('address'))<span>{!! $errors->first('address') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">city</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="city">
+								<input class="form-control" type="text" name="city" value="{{ old('city') }}">
 								@if($errors->has('city'))<span>{!! $errors->first('city') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">State</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="state">
+								<input class="form-control" type="text" name="state" value="{{ old('state') }}">
 								@if($errors->has('state'))<span>{!! $errors->first('state') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Contry</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="country">
+								<input class="form-control" type="text" name="country" value="{{ old('country') }}">
 								@if($errors->has('country'))<span>{!! $errors->first('country') !!}</span>@endif
 							</div>
 						</div>

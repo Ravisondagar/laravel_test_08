@@ -24,6 +24,9 @@
 						<div class="pull-left">
 							<h4 class="text-blue">Edit User</h4>
 						</div>
+						<div class="pull-right">
+							<a href="{!! route('users.index') !!}" data-toggle="tooltip" title="Back to Users" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+						</div>
 					</div><br>
 					<form method="POST" action="{!! route('users.update',$user->id) !!}">
 						@csrf
