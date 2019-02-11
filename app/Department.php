@@ -17,4 +17,9 @@ class Department extends Model
             ]
         ];
     }
+
+    public function userprofiles()
+    {
+        return $this->hasMany('App\UserProfile');
+    }
 }
