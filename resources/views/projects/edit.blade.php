@@ -1,4 +1,5 @@
-@extends('layout.app')
+@extends('layouts.home')
+@section('title','Projects > Edit Projects')
 @section('content')
 	<div class="main-container">
 		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
@@ -11,7 +12,8 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('home') !!}">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.index') !!}">Projects</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Edit Project</li>
 								</ol>
 							</nav>
@@ -25,7 +27,7 @@
 							<h4 class="text-blue">Edit Project</h4>
 						</div>
 						<div class="pull-right">
-							<a href="{!! route('projects.index') !!}" data-toggle="tooltip" title="Back to Users" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+							<a href="{!! route('projects.index') !!}" data-toggle="tooltip" title="Back to Projects" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
 						</div>
 					</div><br>
 					<form method="POST" action="{!! route('projects.update',$project->id) !!}">
@@ -57,7 +59,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<input type="submit" name="submit" value="Update" class="btn btn-primary">
+							<input type="submit" name="submit" value="Update" class="btn btn-primary ml-3">
 						</div>
 					</form>
 				</div>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Validator;
 use Session;
 use Former;
+use Hash;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -44,6 +46,9 @@ class UsersController extends Controller
           'name' => 'required',
           'middle_name' => 'required',
           'last_name' => 'required',
+          'email' => 'required|email|unique:users,email',
+          'password' => 'required|confirmed',
+          'password_confirmation' => 'required',
           'gender' => 'required',
           'dob' => 'required',
           'hobby' => 'required',
@@ -73,6 +78,8 @@ class UsersController extends Controller
           $user->name=$request->get('name');
           $user->middle_name=$request->get('middle_name');
           $user->last_name=$request->get('last_name');
+          $user->email=$request->get('email');
+          $user->password= Hash::make($request->get('password'));
           $user->gender= $request->get('gender');
           $user->dob= date('Y-m-d', strtotime($request->get('dob')));
           $user->age = $request->get('age');
@@ -128,6 +135,9 @@ class UsersController extends Controller
           'name' => 'required',
           'middle_name' => 'required',
           'last_name' => 'required',
+          'email' => 'required|email',
+          'password' => 'required|confirmed',
+          'password_confirmation' => 'required',
           'gender' => 'required',
           'dob' => 'required',
           'hobby' => 'required',
@@ -185,5 +195,11 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect()->route('users.index')->withSuccess('Deleted successfully');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout(); 
+        return redirect('/login');
     }
 }

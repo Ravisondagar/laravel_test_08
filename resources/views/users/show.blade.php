@@ -1,4 +1,5 @@
-@extends('layout.app')
+@extends('layouts.home')
+@section('title','Users > Show User')
 @section('content')
 <div class="main-container">
 	<div class="min-height-200px">
@@ -25,6 +26,10 @@
 						<tr>
 							<th scope="col">Last name</th>
 							<td>{!! $user->last_name !!}</td>
+						</tr>
+						<tr>
+							<th scope="col">Email</th>
+							<td>{!! $user->email !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">Date of Birth</th>

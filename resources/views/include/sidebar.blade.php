@@ -18,14 +18,30 @@
 					</li> --}}
 					<li>
 						<a href="{!! route('users.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fa-calendar-o"></span><span class="mtext">Users</span>
+							<span class="fa fa-user"></span><span class="mtext">Users</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('projects.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fa-calendar-o"></span><span class="mtext">Projects</span>
+							<span class="fa fa-product-hunt"></span><span class="mtext">Projects</span>
 						</a>
 					</li>
+					<li>
+						<a href="{!! route('industries.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fa-product-hunt"></span><span class="mtext">Industries</span>
+						</a>
+					</li>
+					<li>
+						<a href="{!! route('departments.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Department</span>
+						</a>
+					</li>
+					<li>
+						<a href="{!! route('designations.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Designation</span>
+						</a>
+					</li>
+					 
 					{{-- <li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="fa fa-pencil"></span><span class="mtext">Forms</span>

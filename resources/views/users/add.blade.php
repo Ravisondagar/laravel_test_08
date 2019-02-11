@@ -1,4 +1,5 @@
-@extends('layout.app')
+@extends('layouts.home')
+@section('title','Users > Add User')
 @section('content')
 	<div class="main-container">
 		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
@@ -11,7 +12,8 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('home') !!}">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('users.index') !!}">Users</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Add User</li>
 								</ol>
 							</nav>
@@ -52,12 +54,33 @@
 							</div>
 						</div>
 						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Email</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" value="" type="email" name="email" value="{{ old('email') }}">
+								@if($errors->has('email'))<span>{!! $errors->first('email') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Password</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" value="" type="password" name="password" value="{{ old('password') }}">
+								@if($errors->has('password'))<span>{!! $errors->first('password') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Conform Password</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" value="" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}">
+								@if($errors->has('password_confirmation'))<span>{!! $errors->first('password_confirmation') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Gender</label>
-							<div class="custom-control custom-radio mb-5">
+							<div class="custom-control custom-radio mb-5 ml-3">
 								<input type="radio" id="customRadio1" name="gender" class="custom-control-input" value="male" checked>
 								<label class="custom-control-label" for="customRadio1">Male</label>
 							</div>
-							<div class="custom-control custom-radio mb-5">
+							<div class="custom-control custom-radio mb-5 ml-3">
 								<input type="radio" id="customRadio2" name="gender" class="custom-control-input" value="female">
 								<label class="custom-control-label" for="customRadio2">Female</label>
 							</div>
@@ -107,7 +130,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<input type="submit" name="submit" value="Save" id="submit" class="btn btn-primary">
+							<input type="submit" name="submit" value="Save" id="submit" class="btn btn-primary ml-3">
 						</div>
 					</form>
 				</div>

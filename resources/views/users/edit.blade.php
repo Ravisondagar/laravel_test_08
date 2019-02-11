@@ -1,4 +1,5 @@
-@extends('layout.app')
+@extends('layouts.home')
+@section('title','Users > Edit User')
 @section('content')
 	<div class="main-container">
 		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
@@ -11,7 +12,8 @@
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('home') !!}">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('users.index') !!}">Users</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Edit User</li>
 								</ol>
 							</nav>
@@ -54,12 +56,12 @@
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Gender</label>
-							<div class="custom-control custom-radio mb-5">
-								<input type="radio" id="customRadio1" name="gender" class="custom-control-input" value="male" checked>
+							<div class="custom-control custom-radio mb-5 ml-3" >
+								<input type="radio" id="customRadio1" name="gender" class="custom-control-input" value="male" @if($user->gender == 'male') checked @endif>
 								<label class="custom-control-label" for="customRadio1">Male</label>
 							</div>
-							<div class="custom-control custom-radio mb-5">
-								<input type="radio" id="customRadio2" name="gender" class="custom-control-input" value="female">
+							<div class="custom-control custom-radio mb-5 ml-3">
+								<input type="radio" id="customRadio2" name="gender" class="custom-control-input" value="female" @if($user->gender == 'female') checked @endif>
 								<label class="custom-control-label" for="customRadio2">Female</label>
 							</div>
 							@if($errors->has('gender'))<span>{!! $errors->first('gender') !!}</span>@endif
@@ -67,7 +69,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Date of birth</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" id="dob" placeholder="Select Date" type="text" name="dob" value="{!! $user->dob !!}">
+								<input class="form-control" id="dob" placeholder="Select Date" type="text" name="dob" readonly value="{!! $user->dob !!}">
 								<input type="hidden" name="age" id="age" value="{!! $user->age !!}">
 								@if($errors->has('dob'))<span>{!! $errors->first('dob') !!}</span>@endif
 							</div>
@@ -108,7 +110,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<input type="submit" name="submit" value="Update" id="submit" class="btn btn-primary">
+							<input type="submit" name="submit" value="Update" id="submit" class="btn btn-primary ml-3">
 						</div>
 					</form>
 				</div>
@@ -123,11 +125,13 @@ var date = new Date();
     var currentMonth = date.getMonth();
     var currentDate = date.getDate();
     var currentYear = date.getFullYear();
+    var new_date = "{!! $user->dob !!}";
     $("#dob").datepicker({
         maxDate: new Date(currentYear, currentMonth, currentDate),
         changeMonth: true,
         changeYear: true,
         yearRange: '-115:+0',
+        setDate: new Date(new_date),
         language: 'en',
         autoClose: true,
         dateFormat: 'yyyy-mm-dd',
