@@ -12,6 +12,7 @@
 	@include('include/sidebar')
 		@yield('content')
 		<script src="{!! asset('js/main.js') !!}"></script>
+		<script src="{!! asset('js/plupload.full.min.js') !!}"></script>
 		@yield('script')
 		<script type="text/javascript">
 			$(document).ready(function(){

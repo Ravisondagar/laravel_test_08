@@ -33,6 +33,28 @@
 					<form method="post" action="{!! route('users.store') !!}">
 						@csrf
 						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Select Department</label>
+							<div class="col-sm-12 col-md-10">
+								<select class="custom-select col-12" name="department_id">
+									<option selected="" value="">Choose Department</option>
+									@foreach($departments as $key => $department )
+										<option value="{!! $key!!}">{!! $department !!}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Select Designation</label>
+							<div class="col-sm-12 col-md-10">
+								<select class="custom-select col-12" name="designation_id">
+									<option selected="" value="">Choose Designation</option>
+									@foreach($designations as $key => $designation )
+										<option value="{!! $key!!}">{!! $designation !!}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Name</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" type="text" placeholder="Johnny Brown" name="name" value="{{ old('name') }}">
@@ -87,11 +109,34 @@
 							@if($errors->has('gender'))<span>{!! $errors->first('gender') !!}</span>@endif
 						</div>
 						<div class="form-group row">
+							<div id="container">
+							<label class="col-sm-12 col-md-2 col-form-label">Upload Photo</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="file" name="photo" value="{{ old('photo') }}" id="uploader">
+								@if($errors->has('photo'))<span>{!! $errors->first('name') !!}</span>@endif
+							</div>
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Date of birth</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control date-picker" placeholder="Select Date" type="text" name="dob" id="dob">
 								<input type="hidden" name="age" id="age">
 								@if($errors->has('dob'))<span>{!! $errors->first('dob') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Phone</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="text" placeholder="" name="phone" value="{{ old('phone') }}">
+								@if($errors->has('phone'))<span>{!! $errors->first('phone') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Mobile</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="text" placeholder="" name="mobile" value="{{ old('mobile') }}">
+								@if($errors->has('mobile'))<span>{!! $errors->first('mobile') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
@@ -106,6 +151,13 @@
 							<div class="col-sm-12 col-md-10">
 								<textarea name="address" class="form-control">{{ old('address') }}</textarea>
 								@if($errors->has('address'))<span>{!! $errors->first('address') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">address 1</label>
+							<div class="col-sm-12 col-md-10">
+								<textarea name="address" class="form-control">{{ old('address 1') }}</textarea>
+								@if($errors->has('address 1'))<span>{!! $errors->first('address 1') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
@@ -130,6 +182,95 @@
 							</div>
 						</div>
 						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Zip code</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="text" placeholder="" name="zipcode" value="{{ old('zipcode') }}">
+								@if($errors->has('zipcode'))<span>{!! $errors->first('zipcode') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Marital status</label>
+							<div class="custom-control custom-radio mb-5 ml-3">
+								<input type="radio" name="marital_status" class="custom-control-input" value="single" checked>
+								<label class="custom-control-label" for="customRadio2">Single</label>
+							</div>
+							<div class="custom-control custom-radio mb-5 ml-3">
+								<input type="radio" name="marital_status" class="custom-control-input" value="married" >
+								<label class="custom-control-label" for="customRadio1">Married</label>
+							</div>
+							@if($errors->has('marital_status'))<span>{!! $errors->first('marital_status') !!}</span>@endif
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Pan Number</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="text" placeholder="" name="pan_number" value="{{ old('pan_number') }}">
+								@if($errors->has('pan_number'))<span>{!! $errors->first('pan_number') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Management Level</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="text" placeholder="" name="management_level" value="{{ old('management_level') }}">
+								@if($errors->has('management_level'))<span>{!! $errors->first('management_level') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Join Date</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control date-picker" placeholder="Select Date" type="text" name="join_date" id="join_date">
+								@if($errors->has('join_date'))<span>{!! $errors->first('join_date') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Attach</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="file" placeholder="" name="attach" value="{{ old('attach') }}">
+								@if($errors->has('attach'))<span>{!! $errors->first('attach') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Google</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="link" placeholder="" name="google" value="{{ old('google') }}">
+								@if($errors->has('google'))<span>{!! $errors->first('google') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">facebook</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="link" placeholder="" name="facebook" value="{{ old('facebook') }}">
+								@if($errors->has('facebook'))<span>{!! $errors->first('facebook') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">website</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="link" placeholder="" name="website" value="{{ old('website') }}">
+								@if($errors->has('website'))<span>{!! $errors->first('website') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">skype</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="link" placeholder="" name="skype" value="{{ old('skype') }}">
+								@if($errors->has('skype'))<span>{!! $errors->first('skype') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">linkedin</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="link" placeholder="" name="linkedin" value="{{ old('linkedin') }}">
+								@if($errors->has('linkedin'))<span>{!! $errors->first('linkedin') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Twitter</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="link" placeholder="" name="twitter" value="{{ old('twitter') }}">
+								@if($errors->has('twitter'))<span>{!! $errors->first('twitter') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
 							<input type="submit" name="submit" value="Save" id="submit" class="btn btn-primary ml-3">
 						</div>
 					</form>
@@ -138,6 +279,10 @@
 			</div>
 		</div>
 	</div>
+<div id="filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
+ 
+<br />
+<pre id="console"></pre>
 @endsection
 @section('script')
 <script type="text/javascript">
@@ -154,6 +299,15 @@ var date = new Date();
         autoClose: true,
         dateFormat: 'dd-mm-yyyy',
 	});
+	$("#join_date").datepicker({
+        maxDate: new Date(currentYear, currentMonth, currentDate),
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '-115:+0',
+        language: 'en',
+        autoClose: true,
+        dateFormat: 'dd-mm-yyyy',
+	});
 $('#submit').click(function(){
 	var dob = $('#dob').val();
 	var year = new Date(dob);
@@ -161,5 +315,73 @@ $('#submit').click(function(){
 	var age = currentYear - get_year;
 	$('#age').val(age);
 });
+
+var uploader = new plupload.Uploader({
+    runtimes : 'html5,flash,silverlight,html4',
+     
+    browse_button : 'uploader', // you can pass in id...
+    container: document.getElementById('container'), // ... or DOM Element itself
+     
+    url : "{{ asset('plupload/upload.php') }}",
+
+    filters : {
+        max_file_size : '10mb',
+        mime_types: [
+            {title : "Image files", extensions : "jpg,gif,png"},
+            {title : "Zip files", extensions : "zip"}
+        ]
+    },
+ 
+    // Flash settings
+    flash_swf_url : "{{ asset('plupload/Moxie.swf') }}",
+ 
+    // Silverlight settings
+    silverlight_xap_url : "{{ asset('plupload/Moxie.xap') }}",
+     
+ 
+    init: {
+        PostInit: function() {
+            document.getElementById('filelist').innerHTML = '';
+        },
+ 
+        FilesAdded: function(up, files) {
+            
+            uploader.start();
+        },
+ 
+        // UploadProgress: function(up, file) {
+        //     document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        // },
+        UploadFile: function(up, file){
+                    var tmp_url = '{!! asset('/tmp/') !!}';
+                    console.log(file);
+                    
+                        $('#image').val(file.name);
+                        
+
+                        /*$('#preview').val(file.name);
+                        $('#previewDiv >img').remove();
+                        $('#previewDiv').append("<img src='"+tmp_url +"/"+ file.name+"' id='preview' height='100px' width='100px'/>");*/
+                    
+                },
+        UploadComplete: function(up, files){
+        	
+                var tmp_url = '{!! asset('/tmp/') !!}';
+                console.log(files);
+                plupload.each(files, function(file) {
+                    $('#image').val(file.name);
+                    $('#previewDiv > img').remove();
+                    $('#previewDiv').append("<img src='"+"/tmp/"+ file.name+"' id='preview' height='100px' width='100px'/>");
+                });
+                jQuery('.loader').fadeToggle('medium');
+        },
+ 
+        Error: function(up, err) {
+            document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+ 
+uploader.init();
 </script>
 @endsection

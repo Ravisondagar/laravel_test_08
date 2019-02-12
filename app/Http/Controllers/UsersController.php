@@ -9,6 +9,8 @@ use Session;
 use Former;
 use Hash;
 use Auth;
+use App\Department;
+use App\Designation;
 
 class UsersController extends Controller
 {
@@ -30,7 +32,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.add');
+        $departments = Department::all()->pluck('name','id');
+        $designations = Designation::all()->pluck('name','id');
+        return view('users.add',compact('departments','designations'));
     }
 
     /**
