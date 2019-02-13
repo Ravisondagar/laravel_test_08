@@ -33,12 +33,17 @@
 					</li>
 					<li>
 						<a href="{!! route('departments.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Department</span>
+							<span class="fa fi-home"></span><span class="mtext">Departments</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('designations.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Designation</span>
+							<span class="fa fi-home"></span><span class="mtext">Designations</span>
+						</a>
+					</li>
+					<li>
+						<a href="{!! route('clients.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Clients</span>
 						</a>
 					</li>
 					 

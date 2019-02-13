@@ -26,6 +26,8 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin',], function(){
 	Route::resource('industries','IndustriesController');
 	Route::resource('departments','DepartmentsController');
 	Route::resource('designations','DesignationsController');
+	Route::resource('clients','ClientsController');
+	Route::resource('project-categories','ProjectCategoriesController');
 
 });
 

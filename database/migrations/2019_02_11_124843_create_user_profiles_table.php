@@ -21,13 +21,13 @@ class CreateUserProfilesTable extends Migration
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->integer('designation_id')->unsigned();
             $table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');
-            $table->string('fname');
-            $table->string('lname');
             $table->string('photo', 255)->nullable();
+            $table->integer('age')->nullable();
             $table->string('mobile', 255)->nullable();
             $table->string('phone', 255)->nullable();
             $table->string('address_1', 255)->nullable();
             $table->string('address_2', 255)->nullable();
+            $table->string('hobby', 255)->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();

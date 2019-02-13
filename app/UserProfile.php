@@ -3,9 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Image;
 
 class UserProfile extends Model
 {
+
+    protected $fillable = [
+        'user_id','department_id','designation_id','photo','mobile','phone','pan_number','zipcode','marital_status','management_level','join_date','gender','dob','age','hobby','address_1','address_2','city','state','country','attach','google','facebook','website','skype','linkedin','twitter'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -21,33 +27,33 @@ class UserProfile extends Model
         return $this->belongsTo('App\Designation');
     }
 
-    public function setImageAttribute($file) {
+    public function setPhotoAttribute($file) {
         $source_path = upload_tmp_path($file);
         
         if ($file && file_exists($source_path)) 
         {
-            upload_move($file,'image');
+            upload_move($file,'photo');
             Image::make($source_path)->resize(400,200)->save($source_path);
-            upload_move($file,'image','front');
+            upload_move($file,'photo','front');
             Image::make($source_path)->resize(50,50)->save($source_path);
-            upload_move($file,'image','thumb');
+            upload_move($file,'photo','thumb');
             @unlink($source_path);
                 //$this->deleteFile();
         }
-        $this->attributes['image'] = $file;
+        $this->attributes['photo'] = $file;
         if ($file == '') 
         {
                 //$this->deleteFile();
-            $this->attributes['image'] = "";
+            $this->attributes['photo'] = "";
         }
     }
-    public function image_url($type='original') 
+     public function photo_url($type='original') 
     {
-        if (!empty($this->image))
-            return upload_url($this->image,'image',$type);
-        elseif (!empty($this->image) && file_exists(tmp_path($this->image)))
-            return tmp_url($this->$image);
+        if (!empty($this->photo))
+            return upload_url($this->photo,'photo',$type);
+        elseif (!empty($this->photo) && file_exists(tmp_path($this->photo)))
+            return tmp_url($this->$photo);
         else
-            return asset('image/default.jpg');
+            return asset('images/default.png');
     }
 }

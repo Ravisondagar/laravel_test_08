@@ -11,6 +11,7 @@ use Hash;
 use Auth;
 use App\Department;
 use App\Designation;
+use App\UserProfile;
 
 class UsersController extends Controller
 {
@@ -47,19 +48,14 @@ class UsersController extends Controller
     {
         //Rules for validation
         $rules=[
+          'department_id' => 'required',
+          'designation_id' => 'required',
           'name' => 'required',
           'middle_name' => 'required',
           'last_name' => 'required',
           'email' => 'required|email|unique:users,email',
           'password' => 'required|confirmed',
           'password_confirmation' => 'required',
-          'gender' => 'required',
-          'dob' => 'required',
-          'hobby' => 'required',
-          'address' => 'required',
-          'city' => 'required',
-          'state' => 'required',
-          'country' => 'required',
         ];
 
         // Messages for validation
@@ -76,29 +72,59 @@ class UsersController extends Controller
           return redirect()->back()->withErrors($validator)->withInput();
         }
         // If no error than go inside otherwise go to the catch section
-        try
-        {
+        /*try
+        {*/
+          if ($request->get('dob') != '') {
+            $date = date('Y-m-d', strtotime($request->get('dob')));
+            $year = date('Y', strtotime($date));
+            $current_year = date('Y');
+            $age = $current_year - $year;
+          }
           $user = New User;
           $user->name=$request->get('name');
           $user->middle_name=$request->get('middle_name');
           $user->last_name=$request->get('last_name');
           $user->email=$request->get('email');
           $user->password= Hash::make($request->get('password'));
-          $user->gender= $request->get('gender');
-          $user->dob= date('Y-m-d', strtotime($request->get('dob')));
-          $user->age = $request->get('age');
-          $user->hobby = $request->get('hobby');
-          $user->address = $request->get('address');
-          $user->city = $request->get('city');
-          $user->state = $request->get('state');
-          $user->country = $request->get('country');
+          $user->status= $request->get('status');
           $user->save();
+
+          $user_profile = new UserProfile;
+          $user_profile->user_id= $user->id;
+          $user_profile->department_id= $request->get('department_id');
+          $user_profile->designation_id= $request->get('designation_id');
+          $user_profile->photo= $request->get('photo');
+          $user_profile->mobile= $request->get('mobile');
+          $user_profile->phone= $request->get('phone');
+          $user_profile->pan_number= $request->get('pan_number');
+          $user_profile->zipcode= $request->get('zipcode');
+          $user_profile->marital_status= $request->get('marital_status');
+          $user_profile->management_level= $request->get('management_level');
+          $user_profile->join_date= date('Y-m-d', strtotime($request->get('join_date')));
+          $user_profile->gender= $request->get('gender');
+          $user_profile->dob= date('Y-m-d', strtotime($request->get('dob')));
+          $user_profile->age = $age;
+          $user_profile->hobby = $request->get('hobby');
+          $user_profile->address_1 = $request->get('address_1');
+          $user_profile->address_2 = $request->get('address_2');
+          $user_profile->city = $request->get('city');
+          $user_profile->state = $request->get('state');
+          $user_profile->country = $request->get('country');
+          $user_profile->attach = $request->get('attach');
+          $user_profile->google = $request->get('google');
+          $user_profile->facebook = $request->get('facebook');
+          $user_profile->website = $request->get('website');
+          $user_profile->skype = $request->get('skype');
+          $user_profile->linkedin = $request->get('linkedin');
+          $user_profile->Twitter = $request->get('twitter');
+          $user_profile->save();
+
           return redirect()->route('users.index')->withSuccess("Insert record successfully.");
-        }
+        /*}
         catch(\Exception $e)
         {
           return redirect()->route('users.index')->withError('Something went wrong, Please try after sometime.');
-        }
+        }*/
     }
 
     /**
@@ -109,6 +135,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+
         $user = User::find($id);
         return view('users.show',compact('user'));
     }
@@ -121,8 +148,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('users.edit',compact('user'));
+      $departments = Department::all()->pluck('name','id');
+      $designations = Designation::all()->pluck('name','id');
+      $user = User::find($id);
+      return view('users.edit',compact('user','departments','designations'));
     }
 
     /**
@@ -136,19 +165,14 @@ class UsersController extends Controller
     {
         //Rules for validation
         $rules=[
+          'department_id' => 'required',
+          'designation_id' => 'required',
           'name' => 'required',
           'middle_name' => 'required',
           'last_name' => 'required',
           'email' => 'required|email',
           'password' => 'required|confirmed',
           'password_confirmation' => 'required',
-          'gender' => 'required',
-          'dob' => 'required',
-          'hobby' => 'required',
-          'address' => 'required',
-          'city' => 'required',
-          'state' => 'required',
-          'country' => 'required',
         ];
 
         // Messages for validation
@@ -165,27 +189,27 @@ class UsersController extends Controller
           return redirect()->back()->withErrors($validator)->withInput();
         }
         // If no error than go inside otherwise go to the catch section
-        try
-        {
+        /*try
+        {*/
+          $age = '';
+          if ($request->get('dob') != '') {
+            $date = date('Y-m-d', strtotime($request->get('dob')));
+            $year = date('Y', strtotime($date));
+            $current_year = date('Y');
+            $age = $current_year - $year;
+          }
           $user = User::find($id);
-          $user->name = $request->get('name');
-          $user->middle_name = $request->get('middle_name');
-          $user->last_name = $request->get('last_name');
-          $user->gender = $request->get('gender');
-          $user->dob = date('Y-m-d', strtotime($request->get('dob')));
-          $user->age = $request->get('age');
-          $user->hobby = $request->get('hobby');
-          $user->address = $request->get('address');
-          $user->city = $request->get('city');
-          $user->state = $request->get('state');
-          $user->country = $request->get('country');
-          $user->update();
-          return redirect()->route('users.index')->withSuccess("Insert record successfully.");
-        }
+          $user->update($request->all());
+
+          $user_profile = $user->user_profile;
+          $user_profile->update($request->all());
+
+          return redirect()->route('users.index')->withSuccess("Update record successfully.");
+        /*}
         catch(\Exception $e)
         {
           return redirect()->route('users.index')->withError('Something went wrong, Please try after sometime.');
-        }
+        }*/
     }
 
     /**

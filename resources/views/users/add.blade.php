@@ -108,14 +108,16 @@
 							</div>
 							@if($errors->has('gender'))<span>{!! $errors->first('gender') !!}</span>@endif
 						</div>
-						<div class="form-group row">
+						<div class="form-group">
 							<div id="container">
-							<label class="col-sm-12 col-md-2 col-form-label">Upload Photo</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="file" name="photo" value="{{ old('photo') }}" id="uploader">
-								@if($errors->has('photo'))<span>{!! $errors->first('name') !!}</span>@endif
+							{{-- <label>Image</label>
+							<div id="previewDiv">
+								<img id="img" src="{!! asset('/image/default.jpg') !!}">
+							</div> --}}
+							<a href="javascript:;" class="btn btn-primary" id="uploader">Upload Photo</a>
+							@if($errors->has('image'))<p class="help-block">{!! $errors->first('image') !!}</p>@endif
 							</div>
-							</div>
+							<input type="hidden" name="photo" id="image">
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Date of birth</label>
@@ -147,17 +149,17 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">address</label>
+							<label class="col-sm-12 col-md-2 col-form-label">address 1</label>
 							<div class="col-sm-12 col-md-10">
-								<textarea name="address" class="form-control">{{ old('address') }}</textarea>
-								@if($errors->has('address'))<span>{!! $errors->first('address') !!}</span>@endif
+								<textarea name="address_1" class="form-control">{{ old('address_1') }}</textarea>
+								@if($errors->has('address_1'))<span>{!! $errors->first('address_1') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">address 1</label>
+							<label class="col-sm-12 col-md-2 col-form-label">address 2</label>
 							<div class="col-sm-12 col-md-10">
-								<textarea name="address" class="form-control">{{ old('address 1') }}</textarea>
-								@if($errors->has('address 1'))<span>{!! $errors->first('address 1') !!}</span>@endif
+								<textarea name="address_2" class="form-control">{{ old('address_2') }}</textarea>
+								@if($errors->has('address_2 '))<span>{!! $errors->first('address_2') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
@@ -221,12 +223,23 @@
 								@if($errors->has('join_date'))<span>{!! $errors->first('join_date') !!}</span>@endif
 							</div>
 						</div>
-						<div class="form-group row">
+						{{-- <div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Attach</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" type="file" placeholder="" name="attach" value="{{ old('attach') }}">
 								@if($errors->has('attach'))<span>{!! $errors->first('attach') !!}</span>@endif
 							</div>
+						</div> --}}
+						<div class="form-group">
+							<div id="container">
+							{{-- <label>Image</label>
+							<div id="previewDiv">
+								<img id="img" src="{!! asset('/image/default.jpg') !!}">
+							</div> --}}
+							<a href="javascript:;" class="btn btn-primary" id="attach">Attach Document</a>
+							@if($errors->has('attach'))<p class="help-block">{!! $errors->first('attach') !!}</p>@endif
+							</div>
+							<input type="hidden" name="attach" id="attach">
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Google</label>
@@ -271,6 +284,14 @@
 							</div>
 						</div>
 						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">status</label>
+							<div class="col-sm-12 col-md-10">
+								<input type="hidden" name="status" value="0">
+								<input  type="checkbox" value="1" name="status" value="{{ old('status') }}">
+								@if($errors->has('status'))<span>{!! $errors->first('status') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
 							<input type="submit" name="submit" value="Save" id="submit" class="btn btn-primary ml-3">
 						</div>
 					</form>
@@ -308,13 +329,6 @@ var date = new Date();
         autoClose: true,
         dateFormat: 'dd-mm-yyyy',
 	});
-$('#submit').click(function(){
-	var dob = $('#dob').val();
-	var year = new Date(dob);
-	var get_year = year.getFullYear();
-	var age = currentYear - get_year;
-	$('#age').val(age);
-});
 
 var uploader = new plupload.Uploader({
     runtimes : 'html5,flash,silverlight,html4',
