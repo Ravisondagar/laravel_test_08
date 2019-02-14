@@ -20,8 +20,8 @@ class ProjectCategoriesController extends Controller
      */
     public function index()
     {
-        $projects = ProjectCategory::all();
-        return view('project-categories.index',compact('projects'));
+        $project_categories = ProjectCategory::all();
+        return view('project_categories.index',compact('project_categories'));
     }
 
     /**
@@ -31,8 +31,8 @@ class ProjectCategoriesController extends Controller
      */
     public function create()
     {
-        $projects = Project::all()->pluck('name','id');
-        return view('project-categories.add',compact('projects'));
+        $project_categories_parents = ProjectCategory::where('parent_id', '=', null)->pluck('name','id');
+        return view('project_categories.add',compact('project_categories_parents'));
     }
 
     /**
@@ -44,7 +44,6 @@ class ProjectCategoriesController extends Controller
     public function store(Request $request)
     {
         $rules=[
-          'project_id' => 'required',
           'name' => 'required',
           'lft' => 'required',
           'rgt' => 'required',
@@ -68,18 +67,18 @@ class ProjectCategoriesController extends Controller
         /*try
         {*/
           $project_category = New ProjectCategory;
-          $project_category->industry_id=$request->get('project_id');
+          $project_category->parent_id = $request->get('parent_id');
           $project_category->name = $request->get('name');
-          $project_category->logo=$request->get('lft');
-          $project_category->email=$request->get('rgt');
-          $project_category->website=$request->get('depth');
+          $project_category->lft = $request->get('lft');
+          $project_category->rgt = $request->get('rgt');
+          $project_category->depth = $request->get('depth');
           $project_category->save();
 
           return redirect()->route('project-categories.index')->withSuccess("Insert record successfully.");
         /*}
         catch(\Exception $e)
         {
-          return redirect()->route('project-categories.index')->withError('Something went wrong, Please try after sometime.');
+          return redirect()->route('project_categories.index')->withError('Something went wrong, Please try after sometime.');
         }*/
     }
 
@@ -89,10 +88,10 @@ class ProjectCategoriesController extends Controller
      * @param  \App\ProjectCategory  $projectCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(ProjectCategory $projectCategory)
+    public function show($id)
     {
         $project_category = ProjectCategory::find($id);
-        return view('project-categories.show',compact('project_category'));
+        return view('project_categories.show',compact('project_category'));
     }
 
     /**
@@ -103,9 +102,9 @@ class ProjectCategoriesController extends Controller
      */
     public function edit($id)
     {
-        $projects = Project::all()->pluck('name','id');
+        $project_categories_parents = ProjectCategory::where('parent_id', '=', null)->pluck('name','id');
         $project_category = ProjectCategory::find($id);
-        return view('clients.edit',compact('project_category','projects'));
+        return view('project_categories.edit',compact('project_category','project_categories_parents'));
     }
 
     /**
@@ -115,9 +114,40 @@ class ProjectCategoriesController extends Controller
      * @param  \App\ProjectCategory  $projectCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProjectCategory $projectCategory)
+    public function update(Request $request, $id)
     {
-        //
+        $rules=[
+          'name' => 'required',
+          'lft' => 'required',
+          'rgt' => 'required',
+          'depth' => 'required',
+        ];
+
+        // Messages for validation
+        $messages=[
+          'name.required' => 'Please enter first name.',
+          'lft.required' => 'Please enter lft.',
+        ];
+        
+        // Make validator with rules and messages
+        $validator = Validator::make($request->all(),$rules,$messages);
+        // If validator fails than it will redirect back and gives error otherwise go to try catch section
+        if ($validator->fails()) { 
+          //Former::withErrors($validator);
+          return redirect()->back()->withErrors($validator)->withInput();
+        }
+        // If no error than go inside otherwise go to the catch section
+        /*try
+        {*/
+          $project_category = ProjectCategory::find($id);
+          $project_category->update($request->all());
+
+          return redirect()->route('project-categories.index')->withSuccess("Update record successfully.");
+        /*}
+        catch(\Exception $e)
+        {
+          return redirect()->route('project_categories.index')->withError('Something went wrong, Please try after sometime.');
+        }*/
     }
 
     /**

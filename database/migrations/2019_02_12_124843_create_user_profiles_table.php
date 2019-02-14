@@ -17,10 +17,6 @@ class CreateUserProfilesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('department_id')->unsigned();
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->integer('designation_id')->unsigned();
-            $table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');
             $table->string('photo', 255)->nullable();
             $table->integer('age')->nullable();
             $table->string('mobile', 255)->nullable();

@@ -15,8 +15,7 @@ class CreateProjectCategoriesTable extends Migration
     {
         Schema::create('project_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('project_id')->unsigned();
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->integer('parent_id')->nullable();
             $table->string('name');
             $table->string('slug');
             $table->string('lft');

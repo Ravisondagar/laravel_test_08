@@ -17,16 +17,6 @@ class UserProfile extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function department()
-    {
-        return $this->belongsTo('App\Department');
-    }
-
-    public function designation()
-    {
-        return $this->belongsTo('App\Designation');
-    }
-
     public function setPhotoAttribute($file) {
         $source_path = upload_tmp_path($file);
         

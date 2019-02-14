@@ -5,22 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class ProjectCategory extends Model
+class TaskCategory extends Model
 {
-	use Sluggable;
+    use Sluggable;
 
     protected $fillable = [
-        'parent_id','name','lft', 'rgt','depth'
+        'name'
     ];
-
-    public function project()
-    {
-    	 return $this->belongsTo('App\Project');
-    }
-
-    public function parent(){
-        return $this->belongsTo('App\ProjectCategory','parent_id');
-    }
 
     public function sluggable()
     {
