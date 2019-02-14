@@ -46,6 +46,11 @@
 							<span class="fa fi-home"></span><span class="mtext">Clients</span>
 						</a>
 					</li>
+					<li>
+						<a href="{!! route('project-categories.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Project Categories</span>
+						</a>
+					</li>
 					 
 					{{-- <li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
