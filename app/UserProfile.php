@@ -9,7 +9,7 @@ class UserProfile extends Model
 {
 
     protected $fillable = [
-        'user_id','department_id','designation_id','photo','mobile','phone','pan_number','zipcode','marital_status','management_level','join_date','gender','dob','age','hobby','address_1','address_2','city','state','country','attach','google','facebook','website','skype','linkedin','twitter'
+        'user_id','photo','mobile','phone','pan_number','zipcode','marital_status','management_level','join_date','gender','dob','age','hobby','address_1','address_2','city','state','country','attach','google','facebook','website','skype','linkedin','twitter'
     ];
 
     public function user()

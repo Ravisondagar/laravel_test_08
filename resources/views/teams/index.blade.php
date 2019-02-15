@@ -1,5 +1,5 @@
 @extends('layouts.listing')
-@section('title','Users')
+@section('title','Teams')
 @section('content')
 	<div class="main-container">
 		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
@@ -8,12 +8,12 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Users</h4>
+								<h4>Teams</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{!! route('home') !!}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Users</li>
+									<li class="breadcrumb-item active" aria-current="page">Teams</li>
 								</ol>
 							</nav>
 						</div>
@@ -33,10 +33,10 @@
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="clearfix mb-20">
 						<div class="pull-left">
-							<h5 class="text-blue">Users</h5>
+							<h5 class="text-blue">Teams</h5>
 						</div>
 						<div class="text-right">
-							<a href="{!! route('users.create') !!}" class="btn btn-primary">Add User</a>
+							<a href="{!! route('teams.create') !!}" class="btn btn-primary">Add Team</a>
 						</div>
 					</div>
 					<div class="row">
@@ -44,33 +44,26 @@
 							<thead>
 								<tr>
 									<th class="table-plus">Name</th>
-									<th>middle name</th>
-									<th>last name</th>
-									<th>gender</th>
-									<th>dob</th>
+									<th>Team Lead</th>
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($users as $user)
+								@foreach($teams as $team)
 								<tr>
-									<td class="table-plus">{!! $user->name !!}</td>
-									<td>{!! $user->middle_name !!}</td>
-									<td>{!! $user->last_name !!}</td>
-									<td>{!! $user->gender !!}</td>
-									<td>{!! $user->dob !!}</td>
+									<td class="table-plus">{!! $team->name !!}</td>
+									<td>{!! $team->lft !!}</td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="fa fa-ellipsis-h"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="{!! route('users.show',$user->id) !!}"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="{!! route('users.edit',$user->id) !!}"><i class="fa fa-pencil"></i> Edit</a>
-												{!! Former::open()->action( URL::route("users.destroy",$user->id) )->method('delete')->class('form'.$user->id) !!}
-													<a class="dropdown-item submit" href="javascript:;" data-id="{{$user->id}}" ><i class="fa fa-trash"></i> Delete</a>
+												<a class="dropdown-item" href="{!! route('teams.show',$team->id) !!}"><i class="fa fa-eye"></i> View</a>
+												<a class="dropdown-item" href="{!! route('teams.edit',$team->id) !!}"><i class="fa fa-pencil"></i> Edit</a>
+												{!! Former::open()->action( URL::route("teams.destroy",$team->id) )->method('delete')->class('form'.$team->id) !!}
+													<a class="dropdown-item submit" href="javascript:;" data-id="{{$team->id}}" ><i class="fa fa-trash"></i> Delete</a>
 												{!! Former::close() !!}
-												<a class="dropdown-item" href="{!! route('user-experience.edit',$user->id) !!}"><i class="fa fa-pencil"></i> Exp</a>
 											</div>
 										</div>
 									</td>

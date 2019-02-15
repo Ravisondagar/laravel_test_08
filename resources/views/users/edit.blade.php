@@ -39,7 +39,7 @@
 								<select class="custom-select col-12" name="department_id">
 									<option selected="" value="">Choose Department</option>
 									@foreach($departments as $key => $department )
-										<option value="{!! $key!!}" @if($user->user_profile->department->name == $department) selected @endif>{!! $department !!}</option>
+										<option value="{!! $key!!}" @if($user->department->name == $department) selected @endif>{!! $department !!}</option>
 									@endforeach
 								</select>
 							</div>
@@ -50,7 +50,7 @@
 								<select class="custom-select col-12" name="designation_id">
 									<option selected="" value="">Choose Designation</option>
 									@foreach($designations as $key => $designation )
-										<option value="{!! $key!!}" @if($user->user_profile->designation->name == $designation) selected @endif>{!! $designation !!}</option>
+										<option value="{!! $key!!}" @if($user->designation->name == $designation) selected @endif>{!! $designation !!}</option>
 									@endforeach
 								</select>
 							</div>
@@ -108,6 +108,18 @@
 								<label class="custom-control-label" for="customRadio2">Female</label>
 							</div>
 							@if($errors->has('gender'))<span>{!! $errors->first('gender') !!}</span>@endif
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Team lead</label>
+							<div class="custom-control custom-radio mb-5 ml-3">
+								<input type="radio" id="customRadio3" name="team_lead" class="custom-control-input" value="yes" checked>
+								<label class="custom-control-label" for="customRadio3">Yes</label>
+							</div>
+							<div class="custom-control custom-radio mb-5 ml-3">
+								<input type="radio" id="customRadio4" name="team_lead" class="custom-control-input" value="no">
+								<label class="custom-control-label" for="customRadio4">No</label>
+							</div>
+							@if($errors->has('team_lead'))<span>{!! $errors->first('team_lead') !!}</span>@endif
 						</div>
 						<div class="form-group">
 							<div id="container">

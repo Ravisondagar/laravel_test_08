@@ -108,6 +108,18 @@
 							</div>
 							@if($errors->has('gender'))<span>{!! $errors->first('gender') !!}</span>@endif
 						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Team lead</label>
+							<div class="custom-control custom-radio mb-5 ml-3">
+								<input type="radio" id="customRadio3" name="team_lead" class="custom-control-input" value="yes" checked>
+								<label class="custom-control-label" for="customRadio3">Yes</label>
+							</div>
+							<div class="custom-control custom-radio mb-5 ml-3">
+								<input type="radio" id="customRadio4" name="team_lead" class="custom-control-input" value="no">
+								<label class="custom-control-label" for="customRadio4">No</label>
+							</div>
+							@if($errors->has('team_lead'))<span>{!! $errors->first('team_lead') !!}</span>@endif
+						</div>
 						<div class="form-group">
 							<div id="container">
 							{{-- <label>Image</label>
@@ -193,12 +205,12 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Marital status</label>
 							<div class="custom-control custom-radio mb-5 ml-3">
-								<input type="radio" name="marital_status" class="custom-control-input" value="single" checked>
-								<label class="custom-control-label" for="customRadio2">Single</label>
+								<input type="radio" name="marital_status" class="custom-control-input" value="single" id="customRadio5" checked>
+								<label class="custom-control-label" for="customRadio5">Single</label>
 							</div>
 							<div class="custom-control custom-radio mb-5 ml-3">
-								<input type="radio" name="marital_status" class="custom-control-input" value="married" >
-								<label class="custom-control-label" for="customRadio1">Married</label>
+								<input type="radio" name="marital_status" id="customRadio6" class="custom-control-input" value="married" >
+								<label class="custom-control-label" for="customRadio6">Married</label>
 							</div>
 							@if($errors->has('marital_status'))<span>{!! $errors->first('marital_status') !!}</span>@endif
 						</div>

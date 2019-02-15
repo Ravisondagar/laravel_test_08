@@ -74,6 +74,7 @@ class UsersController extends Controller
         // If no error than go inside otherwise go to the catch section
         /*try
         {*/
+          $age = null;
           if ($request->get('dob') != '') {
             $date = date('Y-m-d', strtotime($request->get('dob')));
             $year = date('Y', strtotime($date));
@@ -81,18 +82,19 @@ class UsersController extends Controller
             $age = $current_year - $year;
           }
           $user = New User;
+          $user->department_id= $request->get('department_id');
+          $user->designation_id= $request->get('designation_id');
           $user->name=$request->get('name');
           $user->middle_name=$request->get('middle_name');
           $user->last_name=$request->get('last_name');
           $user->email=$request->get('email');
           $user->password= Hash::make($request->get('password'));
           $user->status= $request->get('status');
+          $user->team_lead = $request->get('team_lead');
           $user->save();
 
           $user_profile = new UserProfile;
           $user_profile->user_id= $user->id;
-          $user_profile->department_id= $request->get('department_id');
-          $user_profile->designation_id= $request->get('designation_id');
           $user_profile->photo= $request->get('photo');
           $user_profile->mobile= $request->get('mobile');
           $user_profile->phone= $request->get('phone');
@@ -230,4 +232,6 @@ class UsersController extends Controller
         Auth::logout(); 
         return redirect('/login');
     }
+    
+
 }
