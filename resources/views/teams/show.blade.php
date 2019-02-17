@@ -1,45 +1,39 @@
 @extends('layouts.home')
-@section('title','Project Category > Show Project Category')
+@section('title','Team > View Team')
 @section('content')
 <div class="main-container">
 	<div class="min-height-200px">
 		<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 			<div class="clearfix mb-20">
 				<div class="pull-left">
-					<h4 class="text-blue">Project Category Details</h4>
+					<h4 class="text-blue">Team Details</h4>
 					<p class="mb-30 font-14"></p>
 				</div>	
 				<div class="pull-right">
-					<a href="{!! route('project-categories.index') !!}" data-toggle="tooltip" title="Back to Project Category" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+					<a href="{!! route('teams.index') !!}" data-toggle="tooltip" title="Back to Team" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
 				</div>
 			</div>
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<tbody>
 						<tr>
-							<th scope="col">No</th>
-							<td>{!! $project_category->id !!}</td>
+							<th scope="col" class="table-plus datatable-nosort">Department name</th>
+							<td class="table-plus">{!! $team->department->name !!}</td>
 						</tr>
 						<tr>
-							<th scope="col" class="table-plus datatable-nosort">Project Category Name</th>
-							<td class="table-plus">{!! $project_category->name !!}</td>
+							<th scope="col">Team Lead name</th>
+							<td>{!! $team->team_leads->name !!}</td>
 						</tr>
-						<tr>
-							<th scope="col">Project name</th>
-							<td>{!! $project_category->project->name !!}</td>
-						</tr>
-						<tr>
-							<th scope="col">Left</th>
-							<td>{!! $project_category->lft !!}</td>
-						</tr>
-						<tr>
-							<th scope="col">Right</th>
-							<td>{!! $project_category->rgt !!}</td>
-						</tr>
-						<tr>
-							<th scope="col">Depth</th>
-							<td>{!! $project_category->depth !!}</td>
-						</tr>
+						<table border="1" class="table table-striped table-bordered">
+							<th scope="row">No</th>
+							<th scope="row">Member name</th>
+							@foreach($members as $key => $member)
+								<tr>
+									<td>{!! $key+1 !!}</td>
+									<td>{!! $member->members->name !!}</td>
+								</tr>
+							@endforeach
+						</table>
 					</tbody>
 				</table>
 			</div>

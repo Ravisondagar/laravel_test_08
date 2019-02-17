@@ -48,8 +48,6 @@ class UsersController extends Controller
     {
         //Rules for validation
         $rules=[
-          'department_id' => 'required',
-          'designation_id' => 'required',
           'name' => 'required',
           'middle_name' => 'required',
           'last_name' => 'required',
@@ -74,16 +72,15 @@ class UsersController extends Controller
         // If no error than go inside otherwise go to the catch section
         /*try
         {*/
+          //dd($request->get('dob'));
           $age = null;
-          if ($request->get('dob') != '') {
+          /*if ($request->get('dob') != '') {
             $date = date('Y-m-d', strtotime($request->get('dob')));
             $year = date('Y', strtotime($date));
             $current_year = date('Y');
             $age = $current_year - $year;
-          }
+          }*/
           $user = New User;
-          $user->department_id= $request->get('department_id');
-          $user->designation_id= $request->get('designation_id');
           $user->name=$request->get('name');
           $user->middle_name=$request->get('middle_name');
           $user->last_name=$request->get('last_name');
@@ -98,11 +95,9 @@ class UsersController extends Controller
           $user_profile->photo= $request->get('photo');
           $user_profile->mobile= $request->get('mobile');
           $user_profile->phone= $request->get('phone');
-          $user_profile->pan_number= $request->get('pan_number');
           $user_profile->zipcode= $request->get('zipcode');
           $user_profile->marital_status= $request->get('marital_status');
           $user_profile->management_level= $request->get('management_level');
-          $user_profile->join_date= date('Y-m-d', strtotime($request->get('join_date')));
           $user_profile->gender= $request->get('gender');
           $user_profile->dob= date('Y-m-d', strtotime($request->get('dob')));
           $user_profile->age = $age;
@@ -167,8 +162,6 @@ class UsersController extends Controller
     {
         //Rules for validation
         $rules=[
-          'department_id' => 'required',
-          'designation_id' => 'required',
           'name' => 'required',
           'middle_name' => 'required',
           'last_name' => 'required',
@@ -232,6 +225,57 @@ class UsersController extends Controller
         Auth::logout(); 
         return redirect('/login');
     }
-    
+        
+    public function user_employment($id)
+    {
+      $value = User::find($id)->pluck('department_id');
+      $user = User::find($id);
+      $departments = Department::all()->pluck('name','id');
+      $designations = Designation::all()->pluck('name','id');
+      $management_levels = UserProfile::whereNotNull('management_level')->pluck('management_level','user_id');
+      return view('users.employment',compact('departments','designations','management_levels','id','user'));
+    }
+
+    public function user_post_employment(Request $request)
+    {
+      //Rules for validation
+        $rules=[
+          'department_id' => 'required',
+          'designation_id' => 'required',
+          'management_level' => 'required',
+          'pan_number' => 'required',
+          'join_date' => 'required',
+        ];
+
+        // Messages for validation
+        $messages=[
+          'department_id.required' => 'Please select Department.',
+          'designation.required' => 'Please select Designation.',
+        ];
+        
+        // Make validator with rules and messages
+        $validator = Validator::make($request->all(),$rules,$messages);
+        // If validator fails than it will redirect back and gives error otherwise go to try catch section
+        if ($validator->fails()) { 
+          //Former::withErrors($validator);
+          return redirect()->back()->withErrors($validator)->withInput();
+        }
+        // If no error than go inside otherwise go to the catch section
+        /*try
+        {*/ 
+          $employment = User::where('id',$request->get('id'));
+          
+          $employment->first()->update($request->all());
+          $employment_user_profile = UserProfile::where('user_id', '=', $request->get('id'))->get();
+          $employment->join_date = date('Y-m-d', strtotime($request->get('join_date')));
+          $employment_user_profile->first()->update($request->except('join_date'));
+          return redirect()->route('users.index')->withSuccess("Update record successfully.");
+        /*}
+        catch(\Exception $e)
+        {
+          return redirect()->route('users.index')->withError('Something went wrong, Please try after sometime.');
+        }*/     
+    }
+
 
 }

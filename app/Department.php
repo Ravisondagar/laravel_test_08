@@ -22,4 +22,9 @@ class Department extends Model
     {
         return $this->hasMany('App\UserProfile');
     }
+
+    public function teams()
+    {
+        return $this->hasMany('App\Team');
+    }
 }

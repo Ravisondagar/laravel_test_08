@@ -31,6 +31,8 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin',], function(){
 	Route::resource('task-categories','TaskCategoriesController');
 	Route::resource('user-experience','UserExperiencesController');
 	Route::resource('teams','TeamsController');
+	Route::get('user_employment/{id}','UsersController@user_employment')->name('users.employment');
+	Route::patch('user_post_employment','UsersController@user_post_employment')->name('users.post_employment');
 
 });
 

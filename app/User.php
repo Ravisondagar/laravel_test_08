@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Designation');
     }
+
+    public function team()
+    {
+        return $this->hasOne('App\Team','team_lead');
+    }
 }

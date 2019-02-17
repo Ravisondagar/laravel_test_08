@@ -33,28 +33,6 @@
 					<form method="post" action="{!! route('users.store') !!}">
 						@csrf
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Select Department</label>
-							<div class="col-sm-12 col-md-10">
-								<select class="custom-select col-12" name="department_id">
-									<option selected="" value="">Choose Department</option>
-									@foreach($departments as $key => $department )
-										<option value="{!! $key!!}">{!! $department !!}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Select Designation</label>
-							<div class="col-sm-12 col-md-10">
-								<select class="custom-select col-12" name="designation_id">
-									<option selected="" value="">Choose Designation</option>
-									@foreach($designations as $key => $designation )
-										<option value="{!! $key!!}">{!! $designation !!}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Name</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" type="text" placeholder="Johnny Brown" name="name" value="{{ old('name') }}">
@@ -71,7 +49,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Last name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" value="" type="text" name="last_name" value="{{ old('last_name') }}">
+								<input class="form-control" type="text" name="last_name" value="{{ old('last_name') }}">
 								@if($errors->has('last_name'))<span>{!! $errors->first('last_name') !!}</span>@endif
 							</div>
 						</div>
@@ -215,24 +193,10 @@
 							@if($errors->has('marital_status'))<span>{!! $errors->first('marital_status') !!}</span>@endif
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Pan Number</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="" name="pan_number" value="{{ old('pan_number') }}">
-								@if($errors->has('pan_number'))<span>{!! $errors->first('pan_number') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Management Level</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" type="text" placeholder="" name="management_level" value="{{ old('management_level') }}">
 								@if($errors->has('management_level'))<span>{!! $errors->first('management_level') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Join Date</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control date-picker" placeholder="Select Date" type="text" name="join_date" id="join_date">
-								@if($errors->has('join_date'))<span>{!! $errors->first('join_date') !!}</span>@endif
 							</div>
 						</div>
 						{{-- <div class="form-group row">
@@ -248,7 +212,7 @@
 							<div id="previewDiv">
 								<img id="img" src="{!! asset('/image/default.jpg') !!}">
 							</div> --}}
-							<a href="javascript:;" class="btn btn-primary" id="attach">Attach Document</a>
+							<a href="javascript:;" class="btn btn-primary" id="attach_file">Attach Document</a>
 							@if($errors->has('attach'))<p class="help-block">{!! $errors->first('attach') !!}</p>@endif
 							</div>
 							<input type="hidden" name="attach" id="attach">
@@ -256,7 +220,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Google</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="link" placeholder="" name="google" value="{{ old('google') }}">
+								<input class="form-control" type="link" name="google" value="{{ old('google') }}">
 								@if($errors->has('google'))<span>{!! $errors->first('google') !!}</span>@endif
 							</div>
 						</div>
@@ -324,15 +288,6 @@ var date = new Date();
     var currentDate = date.getDate();
     var currentYear = date.getFullYear();
     $("#dob").datepicker({
-        maxDate: new Date(currentYear, currentMonth, currentDate),
-        changeMonth: true,
-        changeYear: true,
-        yearRange: '-115:+0',
-        language: 'en',
-        autoClose: true,
-        dateFormat: 'dd-mm-yyyy',
-	});
-	$("#join_date").datepicker({
         maxDate: new Date(currentYear, currentMonth, currentDate),
         changeMonth: true,
         changeYear: true,
@@ -409,5 +364,73 @@ var uploader = new plupload.Uploader({
 });
  
 uploader.init();
+
+var uploader1 = new plupload.Uploader({
+    runtimes : 'html5,flash,silverlight,html4',
+     
+    browse_button : 'attach_file', // you can pass in id...
+    container: document.getElementById('container'), // ... or DOM Element itself
+     
+    url : "{{ asset('plupload/upload.php') }}",
+
+    filters : {
+        max_file_size : '10mb',
+        mime_types: [
+            {title : "Image files", extensions : "jpg,gif,png"},
+            {title : "Zip files", extensions : "zip"}
+        ]
+    },
+ 
+    // Flash settings
+    flash_swf_url : "{{ asset('plupload/Moxie.swf') }}",
+ 
+    // Silverlight settings
+    silverlight_xap_url : "{{ asset('plupload/Moxie.xap') }}",
+     
+ 
+    init: {
+        PostInit: function() {
+            document.getElementById('filelist').innerHTML = '';
+        },
+ 
+        FilesAdded: function(up, files) {
+            
+            uploader1.start();
+        },
+ 
+        // UploadProgress: function(up, file) {
+        //     document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+        // },
+        UploadFile: function(up, file){
+                    var tmp_url = '{!! asset('/tmp/') !!}';
+                    console.log(file);
+                    
+                        $('#attach').val(file.name);
+                        
+
+                        /*$('#preview').val(file.name);
+                        $('#previewDiv >img').remove();
+                        $('#previewDiv').append("<img src='"+tmp_url +"/"+ file.name+"' id='preview' height='100px' width='100px'/>");*/
+                    
+                },
+        UploadComplete: function(up, files){
+        	
+                var tmp_url = '{!! asset('/tmp/') !!}';
+                console.log(files);
+                plupload.each(files, function(file) {
+                    $('#image').val(file.name);
+                    $('#previewDiv > img').remove();
+                    $('#previewDiv').append("<img src='"+"/tmp/"+ file.name+"' id='preview' height='100px' width='100px'/>");
+                });
+                jQuery('.loader').fadeToggle('medium');
+        },
+ 
+        Error: function(up, err) {
+            document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+        }
+    }
+});
+ 
+uploader1.init();
 </script>
 @endsection

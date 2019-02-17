@@ -60,19 +60,14 @@
 									<td>{!! $user->gender !!}</td>
 									<td>{!! $user->dob !!}</td>
 									<td>
-										<div class="dropdown">
-											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="fa fa-ellipsis-h"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="{!! route('users.show',$user->id) !!}"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="{!! route('users.edit',$user->id) !!}"><i class="fa fa-pencil"></i> Edit</a>
-												{!! Former::open()->action( URL::route("users.destroy",$user->id) )->method('delete')->class('form'.$user->id) !!}
-													<a class="dropdown-item submit" href="javascript:;" data-id="{{$user->id}}" ><i class="fa fa-trash"></i> Delete</a>
-												{!! Former::close() !!}
-												<a class="dropdown-item" href="{!! route('user-experience.edit',$user->id) !!}"><i class="fa fa-pencil"></i> Exp</a>
-											</div>
-										</div>
+										<a href="{!! route('users.show',$user->id) !!}" data-toggle="tooltip" title="View User" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>						
+										<a href="{!! route('users.edit',$user->id) !!}" data-toggle="tooltip" title="Edit User" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+										<a href="{!! route('user-experience.edit',$user->id) !!}" data-toggle="tooltip" title="User Experience" class="btn btn-sm btn-info"><i class="fa fa-money"></i></a>
+										<a href="{!!route('users.employment',$user->id)!!}" data-toggle="tooltip" title="User Employment" class="btn btn-sm btn-warning"><i class="fa fa-list"></i></a>									
+										{{-- <a href="{!!route('courses.dates.index', $course->id)!!}" data-toggle="tooltip" title="@lang('words.evaluation_dates')" class="btn btn-sm btn-primary"><i class="fa fa-calendar"></i></a> --}}
+										{!! Former::open()->action( URL::route("users.destroy",$user->id) )->method('delete')->class('form'.$user->id) !!}
+											<a href="javascript:;" data-toggle="tooltip" title="Delete User" class="btn btn-sm btn-danger submit"><i class="fa fa-trash"></i></a>	
+										{!! Former::close() !!}							
 									</td>
 								</tr>
 								@endforeach

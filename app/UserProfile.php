@@ -37,7 +37,8 @@ class UserProfile extends Model
             $this->attributes['photo'] = "";
         }
     }
-     public function photo_url($type='original') 
+
+    public function photo_url($type='original') 
     {
         if (!empty($this->photo))
             return upload_url($this->photo,'photo',$type);
@@ -46,4 +47,36 @@ class UserProfile extends Model
         else
             return asset('images/default.png');
     }
+
+    public function setAttachAttribute($file) {
+        $source_path = upload_tmp_path($file);
+        
+        if ($file && file_exists($source_path)) 
+        {
+            upload_move($file,'attach');
+            Image::make($source_path)->resize(400,200)->save($source_path);
+            upload_move($file,'attach','front');
+            Image::make($source_path)->resize(50,50)->save($source_path);
+            upload_move($file,'attach','thumb');
+            @unlink($source_path);
+                //$this->deleteFile();
+        }
+        $this->attributes['attach'] = $file;
+        if ($file == '') 
+        {
+                //$this->deleteFile();
+            $this->attributes['attach'] = "";
+        }
+    }
+
+    /*public function attach_url($type='original') 
+    {
+        if (!empty($this->attach))
+            return upload_url($this->attach,'attach',$type);
+        elseif (!empty($this->attach) && file_exists(tmp_path($this->attach)))
+            return tmp_url($this->$attach);
+        else
+            return asset('images/default.png');
+    }*/
+
 }

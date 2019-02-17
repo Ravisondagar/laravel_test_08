@@ -51,18 +51,18 @@
 							<tbody>
 								@foreach($teams as $team)
 								<tr>
-									<td class="table-plus">{!! $team->name !!}</td>
-									<td>{!! $team->lft !!}</td>
+									<td class="table-plus">{!! $team->department->name !!}</td>
+									<td>{!! $team->team_leads->name !!}</td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 												<i class="fa fa-ellipsis-h"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="{!! route('teams.show',$team->id) !!}"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="{!! route('teams.edit',$team->id) !!}"><i class="fa fa-pencil"></i> Edit</a>
-												{!! Former::open()->action( URL::route("teams.destroy",$team->id) )->method('delete')->class('form'.$team->id) !!}
-													<a class="dropdown-item submit" href="javascript:;" data-id="{{$team->id}}" ><i class="fa fa-trash"></i> Delete</a>
+												<a class="dropdown-item" href="{!! route('teams.show',$team->department_id) !!}"><i class="fa fa-eye"></i> View</a>
+												<a class="dropdown-item" href="{!! route('teams.edit',$team->department_id) !!}"><i class="fa fa-pencil"></i> Edit</a>
+												{!! Former::open()->action( URL::route("teams.destroy",$team->department_id) )->method('delete')->class('form'.$team->department_id) !!}
+													<a class="dropdown-item submit" href="javascript:;" data-id="{{$team->department_id}}" ><i class="fa fa-trash"></i> Delete</a>
 												{!! Former::close() !!}
 											</div>
 										</div>

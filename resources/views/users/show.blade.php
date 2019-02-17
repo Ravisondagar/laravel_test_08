@@ -33,35 +33,35 @@
 						</tr>
 						<tr>
 							<th scope="col">Date of Birth</th>
-							<td>{!! $user->dob !!}</td>
+							<td>{!! $user->user_profile->dob !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">Age</th>
-							<td>{!! $user->age !!}</td>
+							<td>{!! $user->user_profile->age !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">Address</th>
-							<td>{!! $user->address !!}</td>
+							<td>{!! $user->user_profile->address !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">Gender</th>
-							<td>{!! $user->gender !!}</td>
+							<td>{!! $user->user_profile->gender !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">Hobby</th>
-							<td>{!! $user->hobby !!}</td>
+							<td>{!! $user->user_profile->hobby !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">City</th>
-							<td>{!! $user->city !!}</td>
+							<td>{!! $user->user_profile->city !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">State</th>
-							<td>{!! $user->state !!}</td>
+							<td>{!! $user->user_profile->state !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">Country</th>
-							<td>{!! $user->country !!}</td>
+							<td>{!! $user->user_profile->country !!}</td>
 						</tr>
 					</tbody>
 				</table>
