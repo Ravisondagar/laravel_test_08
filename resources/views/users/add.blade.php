@@ -33,6 +33,30 @@
 					<form method="post" action="{!! route('users.store') !!}">
 						@csrf
 						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Select Department</label>
+							<div class="col-sm-12 col-md-10">
+								<select class="custom-select col-12" name="department_id">
+									<option selected="" value="">Choose Department</option>
+									@foreach($departments as $key => $department )
+										<option value="{!! $key!!}">{!! $department !!}</option>
+									@endforeach
+								</select>
+								@if($errors->has('department_id'))<span>{!! $errors->first('department_id') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Select Designation</label>
+							<div class="col-sm-12 col-md-10">
+								<select class="custom-select col-12" name="designation_id">
+									<option selected="" value="">Choose Designation</option>
+									@foreach($designations as $key => $designation )
+										<option value="{!! $key!!}">{!! $designation !!}</option>
+									@endforeach
+								</select>
+								@if($errors->has('designation_id'))<span>{!! $errors->first('designation_id') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Name</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control" type="text" placeholder="Johnny Brown" name="name" value="{{ old('name') }}">
@@ -150,6 +174,20 @@
 							<div class="col-sm-12 col-md-10">
 								<textarea name="address_2" class="form-control">{{ old('address_2') }}</textarea>
 								@if($errors->has('address_2 '))<span>{!! $errors->first('address_2') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Join Date</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" placeholder="Select Date" type="text" name="join_date" id="join_date" >
+								@if($errors->has('join_date'))<span>{!! $errors->first('join_date') !!}</span>@endif
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-12 col-md-2 col-form-label">Pan Number</label>
+							<div class="col-sm-12 col-md-10">
+								<input class="form-control" type="text" placeholder="" name="pan_number" >
+								@if($errors->has('pan_number'))<span>{!! $errors->first('pan_number') !!}</span>@endif
 							</div>
 						</div>
 						<div class="form-group row">
@@ -288,6 +326,15 @@ var date = new Date();
     var currentDate = date.getDate();
     var currentYear = date.getFullYear();
     $("#dob").datepicker({
+        maxDate: new Date(currentYear, currentMonth, currentDate),
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '-115:+0',
+        language: 'en',
+        autoClose: true,
+        dateFormat: 'dd-mm-yyyy',
+	});
+	$("#join_date").datepicker({
         maxDate: new Date(currentYear, currentMonth, currentDate),
         changeMonth: true,
         changeYear: true,
