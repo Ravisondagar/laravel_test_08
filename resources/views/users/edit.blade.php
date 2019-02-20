@@ -320,7 +320,7 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-var date = new Date();
+	var date = new Date();
     var currentMonth = date.getMonth();
     var currentDate = date.getDate();
     var currentYear = date.getFullYear();

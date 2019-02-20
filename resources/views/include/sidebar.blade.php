@@ -7,6 +7,7 @@
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
+					@if(Auth::user()->role == 'admin')
 					{{-- <li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="fa fa-home"></span><span class="mtext">Home</span>
@@ -61,6 +62,28 @@
 							<span class="fa fi-home"></span><span class="mtext">Teams</span>
 						</a>
 					</li>
+					<li>
+						<a href="{!! route('blog-categories.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Blog Categories</span>
+						</a>
+					</li>
+					<li>
+						<a href="{!! route('blogs.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Blogs</span>
+						</a>
+					</li>
+					@else
+					<li>
+						<a href="{!! route('users.profile') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fa-user"></span><span class="mtext">Profile</span>
+						</a>
+					</li>
+					<li>
+						<a href="{!! route('blogs.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Blogs</span>
+						</a>
+					</li>
+					@endif
 					 
 					{{-- <li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">

@@ -20,14 +20,6 @@
 							<th scope="col">Name</th>
 							<td>{!! $industry->name !!}</td>
 						</tr>
-						{{-- <tr>
-							<th scope="col">User Name</th>
-							<td>{!! $industrie->user->name !!}</td>
-						</tr> --}}
-						{{-- <tr>
-							<th scope="col">Name</th>
-							<td>{!! $industrie->hours !!}</td>
-						</tr> --}}
 					</tbody>
 				</table>
 			</div>

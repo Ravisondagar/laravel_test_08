@@ -52,27 +52,6 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Left</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="lft" value="{{ old('lft') }}">
-								@if($errors->has('lft'))<span>{!! $errors->first('lft') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Right</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="rgt" value="{{ old('rgt') }}">
-								@if($errors->has('rgt'))<span>{!! $errors->first('rgt') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Depth</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="depth" value="{{ old('depth') }}">
-								@if($errors->has('depth'))<span>{!! $errors->first('depth') !!}</span>@endif
-							</div>
-						</div>
-						<div class="form-group row">
 							<input type="submit" name="submit" value="Save" id="submit" class="btn btn-primary ml-3">
 						</div>
 					</form>

@@ -44,9 +44,6 @@
 							<thead>
 								<tr>
 									<th class="table-plus">Name</th>
-									<th>left</th>
-									<th>Right</th>
-									<th>depth</th>
 									<th class="datatable-nosort">Action</th>
 								</tr>
 							</thead>
@@ -54,9 +51,6 @@
 								@foreach($project_categories as $project_category)
 								<tr>
 									<td class="table-plus">{!! $project_category->name !!}</td>
-									<td>{!! $project_category->lft !!}</td>
-									<td>{!! $project_category->rgt !!}</td>
-									<td>{!! $project_category->depth !!}</td>
 									<td>
 										<div class="dropdown">
 											<a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">

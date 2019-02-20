@@ -10,7 +10,7 @@ class ProjectCategory extends Model
 	use Sluggable;
 
     protected $fillable = [
-        'parent_id','name','lft', 'rgt','depth'
+        'parent_id','name'
     ];
 
     public function project()

@@ -24,22 +24,6 @@
 							<th scope="col" class="table-plus datatable-nosort">Project Category Name</th>
 							<td class="table-plus">{!! $project_category->name !!}</td>
 						</tr>
-						<tr>
-							<th scope="col">Project name</th>
-							<td>{!! $project_category->project->name !!}</td>
-						</tr>
-						<tr>
-							<th scope="col">Left</th>
-							<td>{!! $project_category->lft !!}</td>
-						</tr>
-						<tr>
-							<th scope="col">Right</th>
-							<td>{!! $project_category->rgt !!}</td>
-						</tr>
-						<tr>
-							<th scope="col">Depth</th>
-							<td>{!! $project_category->depth !!}</td>
-						</tr>
 					</tbody>
 				</table>
 			</div>

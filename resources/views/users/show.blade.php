@@ -1,5 +1,5 @@
 @extends('layouts.home')
-@section('title','Users > Show User')
+@section('title','Users > View User')
 @section('content')
 <div class="main-container">
 	<div class="min-height-200px">
@@ -22,7 +22,12 @@
 						</tr>
 						<tr>
 							<th scope="col" class="table-plus datatable-nosort">Name</th>
-							<td class="table-plus">{!! $user->name !!}</td></tr>
+							<td class="table-plus">{!! $user->name !!}</td>
+						</tr>
+						<tr>
+							<th scope="col">Middle Name</th>
+							<td>{!! $user->middle_name !!}</td>
+						</tr>
 						<tr>
 							<th scope="col">Last name</th>
 							<td>{!! $user->last_name !!}</td>
@@ -40,8 +45,16 @@
 							<td>{!! $user->user_profile->age !!}</td>
 						</tr>
 						<tr>
-							<th scope="col">Address</th>
-							<td>{!! $user->user_profile->address !!}</td>
+							<th scope="col">Address 1</th>
+							<td>{!! $user->user_profile->address_1 !!}</td>
+						</tr>
+						<tr>
+							<th scope="col">Address 2</th>
+							<td>{!! $user->user_profile->address_2 !!}</td>
+						</tr>
+						<tr>
+							<th scope="col">Hobby</th>
+							<td>{!! $user->user_profile->hobbby !!}</td>
 						</tr>
 						<tr>
 							<th scope="col">Gender</th>
@@ -63,6 +76,18 @@
 							<th scope="col">Country</th>
 							<td>{!! $user->user_profile->country !!}</td>
 						</tr>
+						<table border="1" class="table table-striped table-bordered">
+							<th scope="row">No</th>
+							<th scope="row">Blog name</th>
+							<th scope="row">View</th>
+							@foreach($blogs as $key => $blog)
+								<tr>
+									<td>{!! $key+1 !!}</td>
+									<td>{!! $blog->name !!}</td>
+									<td><a href="{!! route('blogs.show',['id' => $blog->id, 'from' => 'user']) !!}" class="btn btn-primary">Show</a></td>
+								</tr>
+							@endforeach
+						</table>
 					</tbody>
 				</table>
 			</div>

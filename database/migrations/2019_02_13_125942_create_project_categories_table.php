@@ -18,9 +18,9 @@ class CreateProjectCategoriesTable extends Migration
             $table->integer('parent_id')->nullable();
             $table->string('name');
             $table->string('slug');
-            $table->string('lft');
-            $table->string('rgt');
-            $table->string('depth');
+            $table->string('lft')->nullable();
+            $table->string('rgt')->nullable();
+            $table->string('depth')->nullable();
             $table->timestamps();
         });
     }

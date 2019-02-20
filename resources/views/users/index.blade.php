@@ -57,13 +57,12 @@
 									<td class="table-plus">{!! $user->name !!}</td>
 									<td>{!! $user->middle_name !!}</td>
 									<td>{!! $user->last_name !!}</td>
-									<td>{!! $user->gender !!}</td>
-									<td>{!! $user->dob !!}</td>
+									<td>{!! $user->user_profile->gender !!}</td>
+									<td>{!! $user->user_profile->dob !!}</td>
 									<td>
 										<a href="{!! route('users.show',$user->id) !!}" data-toggle="tooltip" title="View User" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i></a>						
 										<a href="{!! route('users.edit',$user->id) !!}" data-toggle="tooltip" title="Edit User" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
-										<a href="{!! route('user-experience.edit',$user->id) !!}" data-toggle="tooltip" title="User Experience" class="btn btn-sm btn-info"><i class="fa fa-money"></i></a>
-										<a href="{!!route('users.employment',$user->id)!!}" data-toggle="tooltip" title="User Employment" class="btn btn-sm btn-warning"><i class="fa fa-list"></i></a>									
+										<a href="{!! route('user-experience.edit',$user->id) !!}" data-toggle="tooltip" title="User Experience" class="btn btn-sm btn-info"><i class="fa fa-money"></i></a>								
 										{{-- <a href="{!!route('courses.dates.index', $course->id)!!}" data-toggle="tooltip" title="@lang('words.evaluation_dates')" class="btn btn-sm btn-primary"><i class="fa fa-calendar"></i></a> --}}
 										{!! Former::open()->action( URL::route("users.destroy",$user->id) )->method('delete')->class('form'.$user->id) !!}
 											<a href="javascript:;" data-toggle="tooltip" title="Delete User" class="btn btn-sm btn-danger submit"><i class="fa fa-trash"></i></a>	

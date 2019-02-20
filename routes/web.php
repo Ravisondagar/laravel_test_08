@@ -14,7 +14,7 @@ Route::get('/', function () {
 	    return view('welcome');
 	});
 
-Route::group(['middleware'=>['auth'],'prefix'=>'admin',], function(){ 
+Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin'], function(){ 
 
 	Route::get('/', function () {
 	    return view('index');
@@ -31,9 +31,17 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin',], function(){
 	Route::resource('task-categories','TaskCategoriesController');
 	Route::resource('user-experience','UserExperiencesController');
 	Route::resource('teams','TeamsController');
-	Route::get('user_employment/{id}','UsersController@user_employment')->name('users.employment');
-	Route::patch('user_post_employment','UsersController@user_post_employment')->name('users.post_employment');
+	Route::get('user-profile','UsersController@profile')->name('users.profile');
+	Route::post('user-profile-update','UsersController@post_profile')->name('users.profile_update');
+	Route::post('user-photo-update','UsersController@photo_update')->name('users.photo_update');
+	Route::resource('blog-categories','BlogCategoriesController');
+	Route::resource('blogs','BlogsController');
 
+});
+
+Route::resource('allblogs','BlogsController');
+
+Route::group(['middleware'=>['auth'],], function(){ 
 });
 
 Auth::routes();
