@@ -8,8 +8,9 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class BlogsImport implements ToModel
+class BlogsImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -25,10 +26,10 @@ class BlogsImport implements ToModel
     {
 
         return new Blog([
-            'user_id'  => $row[0],
-            'blog_category_id'  => $row[1],
-            'name'  => $row[2],
-            'description'  => $row[3]
+            'user_id'           => $row['user'],
+            'blog_category_id'  => $row['category'],
+            'name'              => $row['name'],
+            'description'       => $row['description'],
         ]);
     }
 
