@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Team','team_lead');
     }
+
+    public function blogs()
+    {
+        return $this->hasMany('App\Blog');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Task');
+    }
 }

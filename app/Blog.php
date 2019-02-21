@@ -30,6 +30,8 @@ class Blog extends Model
             upload_move($file,'blog_photo','front');
             Image::make($source_path)->resize(230,303)->save($source_path);
             upload_move($file,'blog_photo','thumb');
+            Image::make($source_path)->resize(150,150)->save($source_path);
+            upload_move($file,'blog_photo','circle');
             @unlink($source_path);
         }
         $this->attributes['photo'] = $file;

@@ -1,6 +1,6 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.php">
+			<a href="{!! route('dashboard.index') !!}">
 				<img src="{!! asset('vendors/images/deskapp-logo.png') !!}" alt="">
 			</a>
 		</div>
@@ -19,57 +19,57 @@
 					</li> --}}
 					<li>
 						<a href="{!! route('users.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fa-user"></span><span class="mtext">Users</span>
+							<span class="fa fa-user"></span><span class="mtext">Users ({!!App\user::where('role', '=', 'user')->count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('projects.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fa-product-hunt"></span><span class="mtext">Projects</span>
+							<span class="fa fa-product-hunt"></span><span class="mtext">Projects ({!!App\Project::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('industries.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fa-product-hunt"></span><span class="mtext">Industries</span>
+							<span class="fa fa-product-hunt"></span><span class="mtext">Industries ({!!App\Industry::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('departments.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Departments</span>
+							<span class="fa fi-home"></span><span class="mtext">Departments ({!!App\Department::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('designations.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Designations</span>
+							<span class="fa fi-home"></span><span class="mtext">Designations ({!!App\Designation::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('clients.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Clients</span>
+							<span class="fa fi-home"></span><span class="mtext">Clients ({!!App\Client::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('project-categories.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Project Categories</span>
+							<span class="fa fi-home"></span><span class="mtext">Project Categories ({!!App\ProjeCtCategory::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('task-categories.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Task Categories</span>
+							<span class="fa fi-home"></span><span class="mtext">Task Categories ({!!App\TaskCategory::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('teams.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Teams</span>
+							<span class="fa fi-home"></span><span class="mtext">Teams ({!!App\Team::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('blog-categories.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Blog Categories</span>
+							<span class="fa fi-home"></span><span class="mtext">Blog Categories ({!!App\BlogCategory::count() !!})</span>
 						</a>
 					</li>
 					<li>
 						<a href="{!! route('blogs.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Blogs</span>
+							<span class="fa fi-home"></span><span class="mtext">Blogs ({!!App\Blog::count() !!})</span>
 						</a>
 					</li>
 					@else
@@ -78,9 +78,18 @@
 							<span class="fa fa-user"></span><span class="mtext">Profile</span>
 						</a>
 					</li>
+						@php
+							$user = App\User::where('id', '=', Auth::user()->id)->get()->first();
+							$blog_count = $user->blogs->count();
+						@endphp
 					<li>
 						<a href="{!! route('blogs.index') !!}" class="dropdown-toggle no-arrow">
-							<span class="fa fi-home"></span><span class="mtext">Blogs</span>
+							<span class="fa fi-home"></span><span class="mtext">Blogs ({!! $blog_count !!})</span>
+						</a>
+					</li>
+					<li>
+						<a href="{!! route('tasks.index') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Tasks ({!! $user->tasks->count() !!})</span>
 						</a>
 					</li>
 					@endif

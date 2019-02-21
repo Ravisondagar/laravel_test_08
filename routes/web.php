@@ -20,6 +20,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin'], 
 	    return view('index');
 	})->name('home');
 
+	Route::resource('dashboard','DashboardController');
 	Route::resource('users','UsersController');
 	Route::post('userlogout','UsersController@logout')->name('userlogout');
 	Route::resource('projects','ProjectsController');
@@ -29,6 +30,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin'], 
 	Route::resource('clients','ClientsController');
 	Route::resource('project-categories','ProjectCategoriesController');
 	Route::resource('task-categories','TaskCategoriesController');
+	Route::resource('tasks','TasksController');
 	Route::resource('user-experience','UserExperiencesController');
 	Route::resource('teams','TeamsController');
 	Route::get('user-profile','UsersController@profile')->name('users.profile');
@@ -36,6 +38,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin'], 
 	Route::post('user-photo-update','UsersController@photo_update')->name('users.photo_update');
 	Route::resource('blog-categories','BlogCategoriesController');
 	Route::resource('blogs','BlogsController');
+	Route::post('import-blogs','BlogsController@import')->name('blogs.import');
 
 });
 

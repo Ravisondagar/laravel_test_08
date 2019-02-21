@@ -10,9 +10,11 @@
 					<p class="mb-30 font-14"></p>
 				</div>	
 				<div class="pull-right">
-					{!! $from !!}
+					@if($from == 'user')
+					<a href="{!! route('users.show',$blog->user->id) !!}" data-toggle="tooltip" title="Back to Blogs" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+					@else
 					<a href="{!! route('blogs.index') !!}" data-toggle="tooltip" title="Back to Blogs" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
-					}
+					@endif
 				</div>
 			</div>
 			<div class="table-responsive">

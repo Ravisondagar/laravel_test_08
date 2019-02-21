@@ -137,7 +137,6 @@
 							<label class="col-sm-12 col-md-2 col-form-label">Date of birth</label>
 							<div class="col-sm-12 col-md-10">
 								<input class="form-control date-picker" placeholder="Select Date" type="text" name="dob" id="dob">
-								<input type="hidden" name="age" id="age">
 								@if($errors->has('dob'))<span>{!! $errors->first('dob') !!}</span>@endif
 							</div>
 						</div>

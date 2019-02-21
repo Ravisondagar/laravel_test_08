@@ -34,4 +34,6 @@ mix.js('resources/js/app.js', 'public/js/min')
    'public/src/plugins/datatables/media/js/button/buttons.flash.js',
    'public/src/plugins/datatables/media/js/button/pdfmake.min.js',
    'public/src/plugins/datatables/media/js/button/vfs_fonts.js',
+   'public/src/plugins/highcharts-6.0.7/code/highcharts.js',
+   'public/src/plugins/highcharts-6.0.7/code/highcharts-more.js',
    ], 'public/js/main.js');

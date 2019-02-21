@@ -3,16 +3,17 @@
 <head>
 	<title>@yield('title')</title>
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
-	@include('include/head')
+	@include('shared/head')
 	<link rel="stylesheet" href="{!! asset('css/main.css') !!}">
 	<style type="text/css">
 	</style>
 </head>
 <body>
-	@include('include/header')
-	@include('include/sidebar')
+	@include('shared/header')
+	@include('shared/sidebar')
 		@yield('content')
 		<script src="{!! asset('js/main.js') !!}"></script>
+		<script src="{!! asset('js/plupload.full.min.js') !!}"></script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		@yield('script')
 		<script>
@@ -90,6 +91,6 @@
 				});
 			});
 		</script>
-	{{-- @include('include/footer') --}}
+	{{-- @include('shared/footer') --}}
 </body>
 </html>

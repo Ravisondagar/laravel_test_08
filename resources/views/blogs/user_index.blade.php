@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.listing')
 @section('content')
 	<div class="main-container">
 		<div class="pd-ltr-20 customscroll customscroll-10-p height-100-p xs-pd-20-10">
@@ -30,7 +30,7 @@
 									<div class="contact-dire-info text-center">
 										<div class="contact-avatar">
 											<span>
-												<img src="{!! $blog->photo_url() !!}" alt="">
+												<img src="{!! $blog->photo_url('circle') !!}" alt="">
 											</span>
 										</div>
 										<div class="contact-name">
@@ -48,12 +48,12 @@
 											{!! $blog->description !!}
 										</div>
 									</div>
-									<div class="view-contact row">
-										<a href="{!! route('blogs.edit',$blog->id) !!}">Edit</a>
+									<div class="btn-list row">
+										<a href="{!! route('blogs.show',$blog->id) !!}" class="btn btn-primary ml-5">Show</a>
+										<a href="{!! route('blogs.edit',$blog->id) !!}" class="btn btn-success">Edit</a>
 										{!! Former::open()->action( URL::route("blogs.destroy",$blog->id) )->method('delete')->class('form'.$blog->id) !!}
-											<a class="dropdown-item submit" href="javascript:;" data-id="{{$blog->id}}" ><i class="fa fa-trash"></i> Delete</a>
+											<a class="btn btn-danger submit" href="javascript:;" data-id="{{$blog->id}}" >Delete</a>
 										{!! Former::close() !!}
-										<a href="{!! route('blogs.show',$blog->id) !!}">View</a>
 									</div>
 								</div>
 							</li>

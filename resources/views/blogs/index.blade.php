@@ -38,6 +38,13 @@
 						<div class="text-right">
 							<a href="{!! route('blogs.create') !!}" class="btn btn-primary">Add Blog</a>
 						</div>
+						<div id="container">
+							<div class="text-right">
+								<a href="javascript:;" class="btn btn-primary" id="import">Import Blog</a>
+							</div>
+						</div>
+						<input type="hidden" name="file" id="file">
+							
 					</div>
 					<div class="row">
 						<table class="data-table stripe hover nowrap">
@@ -78,4 +85,87 @@
 			</div>
 		</div>
 	</div>
+@endsection
+@section('script')
+<script type="text/javascript">
+	var uploader = new plupload.Uploader({
+	    runtimes : 'html5,flash,silverlight,html4',
+	     
+	    browse_button : 'import', // you can pass in id...
+	    container: document.getElementById('container'), // ... or DOM Element itself
+	     
+	    url : "{{ asset('plupload/upload.php') }}",
+
+	    filters : {
+	        max_file_size : '10mb',
+	        mime_types: [
+	            {title : "Image files", extensions : "jpg,gif,png,xlsx"},
+	            {title : "Zip files", extensions : "zip"}
+	        ]
+	    },
+	 
+	    // Flash settings
+	    flash_swf_url : "{{ asset('plupload/Moxie.swf') }}",
+	 
+	    // Silverlight settings
+	    silverlight_xap_url : "{{ asset('plupload/Moxie.xap') }}",
+	     
+	 
+	    init: {
+	        PostInit: function() {
+	            //document.getElementById('filelist').innerHTML = '';
+	        },
+	 
+	        FilesAdded: function(up, files) {
+	            
+	            uploader.start();
+	        },
+	 
+	        // UploadProgress: function(up, file) {
+	        //     document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+	        // },
+	        UploadFile: function(up, file){
+	                    var tmp_url = '{!! asset('/tmp/') !!}';
+	                    
+	                        $('#file').val(file.name);
+	                        $.ajax({
+	                        	url: "{!! route('blogs.import') !!}",
+	                        	type: 'post',
+	                        	data : {'file': file.name , 
+	                        			"_token": "{!! csrf_token() !!}",
+	                        		},
+	                        	success:function(response) {
+	                        		console.log(response);
+	                        	},
+	                        	error: function(data) {
+	                        	       console.log(data);
+	                        	}
+	                        });
+	                        
+
+	                        /*$('#preview').val(file.name);
+	                        $('#previewDiv >img').remove();
+	                        $('#previewDiv').append("<img src='"+tmp_url +"/"+ file.name+"' id='preview' height='100px' width='100px'/>");*/
+	                    
+	                },
+	        UploadComplete: function(up, files){
+	        	
+	                var tmp_url = '{!! asset('/tmp/') !!}';
+	                plupload.each(files, function(file) {
+	                    $('#image').val(file.name);
+	                    $('#previewDiv > img').remove();
+	                    $('#previewDiv').append("<img src='"+"/tmp/"+ file.name+"' id='preview' height='100px' width='100px'/>");
+	                });
+	                jQuery('.loader').fadeToggle('medium');
+	        },
+	 
+	        Error: function(up, err) {
+	            document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+	        }
+	    }
+	});
+	 
+	uploader.init();
+</script>
+
 @endsection
