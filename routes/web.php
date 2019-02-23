@@ -21,11 +21,13 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin'], 
 	})->name('home');
 
 	Route::resource('dashboard','DashboardController');
+	Route::get('orange','DashboardController@orange')->name('orange');
 	Route::resource('users','UsersController');
 	Route::post('userlogout','UsersController@logout')->name('userlogout');
 	Route::resource('projects','ProjectsController');
 	Route::resource('industries','IndustriesController');
 	Route::resource('departments','DepartmentsController');
+	Route::resource('departments.team-leads','TeamLeadsController');
 	Route::resource('designations','DesignationsController');
 	Route::resource('clients','ClientsController');
 	Route::resource('project-categories','ProjectCategoriesController');
@@ -39,6 +41,9 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin'], 
 	Route::resource('blog-categories','BlogCategoriesController');
 	Route::resource('blogs','BlogsController');
 	Route::post('import-blogs','BlogsController@import')->name('blogs.import');
+	Route::get('export-blogs','BlogsController@export')->name('blogs.export');
+	Route::post('import-users','UsersController@import')->name('users.import');
+	Route::get('export-users','UsersController@export')->name('users.export');
 
 });
 

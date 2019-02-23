@@ -72,6 +72,11 @@
 							<span class="fa fi-home"></span><span class="mtext">Blogs ({!!App\Blog::count() !!})</span>
 						</a>
 					</li>
+					<li>
+						<a href="{!! route('orange') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Orange </span>
+						</a>
+					</li>
 					@else
 					<li>
 						<a href="{!! route('users.profile') !!}" class="dropdown-toggle no-arrow">

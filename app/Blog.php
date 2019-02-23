@@ -8,7 +8,7 @@ use Image;
 class Blog extends Model
 {
 	protected $fillable = [
-        'blog_category_id','name','description','photo','status'
+        'user_id','blog_category_id','name','description','photo','status'
     ];
     
     public function blog_category()

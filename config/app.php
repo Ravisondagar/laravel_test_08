@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -227,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Former' => Former\Facades\Former::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
 
     ],
 

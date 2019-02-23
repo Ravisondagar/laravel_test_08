@@ -6,6 +6,9 @@
 	@include('shared/head')
 	<link rel="stylesheet" href="{!! asset('css/main.css') !!}">
 	<style type="text/css">
+	.orange{
+		background-color: orange;
+	}
 	</style>
 	{!! Charts::styles() !!}
 </head>

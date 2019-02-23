@@ -10,6 +10,7 @@ use Validator;
 use Auth;
 use Illuminate\Support\Facades\Input;
 use App\Imports\BlogsImport;
+use App\Exports\BlogsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use URL;
 
@@ -183,5 +184,10 @@ class BlogsController extends Controller
         $excel = Excel::import(new BlogsImport, $file);
         
         return redirect()->route('blogs.index')->with('success', 'All good!');
+    }
+
+    public function export() 
+    {
+      return Excel::download(new BlogsExport, 'blogs.xlsx');
     }
 }

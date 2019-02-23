@@ -32,17 +32,13 @@
 				<!-- Simple Datatable start -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="clearfix mb-20">
-						<div class="pull-left">
-							<h5 class="text-blue">Blogs</h5>
-						</div>
-						<div class="text-right">
+						<div class="btn-list row pull-right">
 							<a href="{!! route('blogs.create') !!}" class="btn btn-primary">Add Blog</a>
-						</div>
+							<a href="{!! route('blogs.export') !!}" class="btn btn-primary">Export Blog</a>
 						<div id="container">
-							<div class="text-right">
 								<a href="javascript:;" class="btn btn-primary" id="import">Import Blog</a>
-							</div>
 						</div>
+					</div>
 						<input type="hidden" name="file" id="file">
 							
 					</div>

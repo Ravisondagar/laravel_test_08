@@ -61,6 +61,7 @@
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" href="{!! route('departments.show',$department->id) !!}"><i class="fa fa-eye"></i> View</a>
 												<a class="dropdown-item" href="{!! route('departments.edit',$department->id) !!}"><i class="fa fa-pencil"></i> Edit</a>
+												<a class="dropdown-item" href="{!! route('departments.team-leads.create',['department_id' => $department->id]) !!}"><i class="fa fa-pencil"></i> User</a>
 												{!! Former::open()->action( URL::route("departments.destroy",$department->id) )->method('delete')->class('form'.$department->id) !!}
 													<a class="dropdown-item submit" href="javascript:;" data-id="{{$department->id}}" ><i class="fa fa-trash"></i> Delete</a>
 												{!! Former::close() !!}

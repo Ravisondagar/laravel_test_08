@@ -13,6 +13,9 @@ use App\Department;
 use App\Designation;
 use App\UserProfile;
 use App\Blog;
+use App\Imports\UsersImport;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class UsersController extends Controller
@@ -302,7 +305,19 @@ class UsersController extends Controller
       {
         return response(['status' => '422']);
       }
+    }
 
+    public function import(Request $request)
+    {
+      $file = public_path().'/tmp/'.$request->get('file');
 
+      $excel = Excel::import(new UsersImport, $file);
+        
+      return redirect()->route('users.index')->with('success', 'All good!');
+    }
+
+    public function export() 
+    {
+      return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

@@ -143,4 +143,9 @@ class DashboardController extends Controller
     {
         //
     }
+
+    public function orange()
+    {
+        return view('orange');
+    }
 }

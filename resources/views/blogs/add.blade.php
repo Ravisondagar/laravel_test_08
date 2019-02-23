@@ -87,6 +87,8 @@
 	</div>
 @endsection
 @section('script')
+<script src="{!! asset('/vendors/unisharp/laravel-ckeditor/ckeditor.js') !!}"></script>
+<script src="{!! asset('/vendors/unisharp/laravel-ckeditor/adapters/jquery.js') !!}"></script>
 <script type="text/javascript">
 	var uploader = new plupload.Uploader({
 	    runtimes : 'html5,flash,silverlight,html4',
@@ -113,7 +115,7 @@
 	 
 	    init: {
 	        PostInit: function() {
-	            document.getElementById('filelist').innerHTML = '';
+	            //document.getElementById('filelist').innerHTML = '';
 	        },
 	 
 	        FilesAdded: function(up, files) {
@@ -155,6 +157,8 @@
 	});
 	 
 	uploader.init();
+
+	$('textarea').ckeditor();
 </script>
 
 @endsection
