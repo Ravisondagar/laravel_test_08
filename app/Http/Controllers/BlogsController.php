@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Blog;
+use App\BlogCategory;
+use Illuminate\Support\Facades\Input;
 
 class BlogsController extends Controller
 {
@@ -14,8 +16,18 @@ class BlogsController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
-        return view('blogs.blogs',compact('blogs'));
+        $slug = Input::get('slug');
+        if ($slug != null) {
+            $blog_category = BlogCategory::where('slug', '=', $slug)->first();
+            $blogs = Blog::where('blog_category_id', '=', $blog_category->id)->get();
+            $blog_categories = BlogCategory::all();
+        }
+        else
+        {
+            $blogs = Blog::all();
+            $blog_categories = BlogCategory::all();
+        }
+        return view('front.blogs.index',compact('blogs','blog_categories'));
     }
 
     /**
@@ -45,10 +57,11 @@ class BlogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $blog = Blog::find($id);
-        return view('blogs.user_show',compact('blog'));
+        $blog = Blog::find(Input::get('id'));
+        $blog_categories = BlogCategory::all();
+        return view('blogs.user_show',compact('blog','blog_categories'));
     }
 
     /**

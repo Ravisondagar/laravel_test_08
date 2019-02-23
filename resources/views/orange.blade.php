@@ -46,32 +46,19 @@
 @section('script')
 <script type="text/javascript">
 	$(document).ready(function(){
-		/*$("div:contains('orange')").each(function () {
-		    $(this).html($(this).css("background-color: orange"));
-		});
-		$("li:contains('orange')").each(function () {
-		    $(this).html($(this).html().replace("orange", '<span style="color: orange ">orange</span>'));
-		});
-		$("p:contains('orange')").each(function () {
-		    $(this).html($(this).html().replace("orange", '<span style="color: orange ">orange</span>'));
-		});*/
-		$("p:contains(orange)").css("background-color", "orange");
-		$("li:contains(orange)").css("background-color", "orange");
-		$("#me:contains(orange)").css("background-color", "orange");
-		$("#section-div:contains(orange)").css("background-color", "orange");
-		$(".section-div:contains(orange)").css("background-color", "orange");
+		$('#me').css("background-color", "orange");
+		$('.section-div').css("background-color", "orange");
+		$('.page-header > ul').addClass('ravi');
+		$('.ravi > li:first').css("background-color", "orange");
+		$('.ravi > li:nth-child(4)').css("background-color", "orange");
+		$('#section-div').css("background-color", "orange");
+		$('li:last').css("background-color", "orange");
 
 
-		/*var elementCount = $("orange").css( "border", "3px solid red" ).length;
-		$( "body" ).prepend( "<h3>" + elementCount + " elements found</h3>" );*/
-
-		// Replace 'td' with your html tag
-		    /*$("div").html(function() { 
-
-		    // Replace 'ok' with string you want to change, you can delete 'hello everyone' to remove the text
-		          return $(this).css("background-color", "orange");  
-
-		    });*/
+		$("section:first").find("div:last").css("background-color", "orange");
+		$("section:last").find("span:first").css("background-color", "orange");
+		$("section").find("p span > i:last").css("background-color", "orange");
+		$("section:last").find("div:last").css("background-color", "orange");
 	});
 </script>
 @endsection

@@ -14,7 +14,7 @@ Route::get('/', function () {
 	    return view('welcome');
 	});
 
-Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin'], function(){ 
+Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin',], function(){ 
 
 	Route::get('/', function () {
 	    return view('index');
@@ -47,7 +47,9 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin'], 
 
 });
 
-Route::resource('allblogs','BlogsController');
+Route::get('blogs','BlogsController@index')->name('blogs');
+Route::get('blog_detail','BlogsController@show')->name('blog_detail');
+
 
 Route::group(['middleware'=>['auth'],], function(){ 
 });
