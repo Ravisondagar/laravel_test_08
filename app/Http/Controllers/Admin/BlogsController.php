@@ -26,12 +26,12 @@ class BlogsController extends Controller
     {
         if (Auth::user()->role == 'admin') {
             $blogs = Blog::all(); 
-            return view('blogs.index',compact('blogs'));
+            return view('Admin.blogs.index',compact('blogs'));
         }
         else
         {
             $blogs = Blog::where('user_id', '=', Auth::user()->id)->get();
-            return view('blogs.user_index',compact('blogs'));
+            return view('Admin.blogs.user_index',compact('blogs'));
         }
     }
 
@@ -43,7 +43,7 @@ class BlogsController extends Controller
     public function create()
     {
         $blog_categories = BlogCategory::all()->pluck('id','name');
-        return view('blogs.add',compact('blog_categories'));
+        return view('Admin.blogs.add',compact('blog_categories'));
     }
 
     /**
@@ -104,7 +104,7 @@ class BlogsController extends Controller
     {
         $from = Input::get('from');
         $blog = Blog::find($id);
-        return view('blogs.show',compact('blog','from'));
+        return view('Admin.blogs.show',compact('blog','from'));
     }
 
     /**
@@ -117,7 +117,7 @@ class BlogsController extends Controller
     {
         $blog_categories = BlogCategory::all()->pluck('id','name');
         $blog = Blog::find($id);
-        return view('blogs.edit',compact('blog_categories','blog'));
+        return view('Admin.blogs.edit',compact('blog_categories','blog'));
     }
 
     /**

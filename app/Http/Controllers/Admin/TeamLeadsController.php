@@ -40,7 +40,7 @@ class TeamLeadsController extends Controller
         }
         $team_leads = User::where('team_lead', '=', 'yes')->pluck('name','id');
         $members = User::where('department_id', '=', $id)->where('team_lead', '=', 'no')->pluck('name','id');
-        return view('departments.team',compact('id','team_leads','members','select_members','select_team_lead'));
+        return view('Admin.departments.team',compact('id','team_leads','members','select_members','select_team_lead'));
         
     }
 

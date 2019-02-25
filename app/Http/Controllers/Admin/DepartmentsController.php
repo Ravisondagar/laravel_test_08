@@ -13,12 +13,12 @@ class DepartmentsController extends Controller
     public function index()
     {
         $departments = Department::all(); 
-        return view('departments.index',compact('departments'));
+        return view('Admin.departments.index',compact('departments'));
     }
 
     public function create()
     {
-        return view('departments.add');
+        return view('Admin.departments.add');
     }
 
     public function store(Request $request)
@@ -57,13 +57,13 @@ class DepartmentsController extends Controller
     public function show($id)
     {
         $department = Department::find($id);
-        return view('departments.show',compact('department'));
+        return view('Admin.departments.show',compact('department'));
     }
 
     public function edit($id)
     {
         $department = Department::find($id);
-        return view('departments.edit',compact('department'));
+        return view('Admin.departments.edit',compact('department'));
     }
 
     public function update(Request $request, $id)

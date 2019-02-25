@@ -13,12 +13,12 @@ class DesignationsController extends Controller
     public function index()
     {
         $designations = Designation::all(); 
-        return view('designations.index',compact('designations'));
+        return view('Admin.designations.index',compact('designations'));
     }
 
     public function create()
     {
-        return view('designations.add');
+        return view('Admin.designations.add');
     }
 
     public function store(Request $request)
@@ -57,13 +57,13 @@ class DesignationsController extends Controller
     public function show($id)
     {
         $designation = Designation::find($id);
-        return view('designations.show',compact('designation'));
+        return view('Admin.designations.show',compact('designation'));
     }
 
     public function edit($id)
     {
         $designation = Designation::find($id);
-        return view('designations.edit',compact('designation'));
+        return view('Admin.designations.edit',compact('designation'));
     }
 
     public function update(Request $request, $id)

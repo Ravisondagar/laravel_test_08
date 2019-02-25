@@ -20,7 +20,7 @@ class BlogCategoriesController extends Controller
     public function index()
     {
         $blog_categories = BlogCategory::all();
-        return view('blog_categories.index',compact('blog_categories'));
+        return view('Admin.blog_categories.index',compact('blog_categories'));
     }
 
     /**
@@ -31,7 +31,7 @@ class BlogCategoriesController extends Controller
     public function create()
     {
         $blog_categories_parents = BlogCategory::where('parent_id', '=', null)->pluck('name','id');
-        return view('blog_categories.add',compact('blog_categories_parents'));
+        return view('Admin.blog_categories.add',compact('blog_categories_parents'));
     }
 
     /**
@@ -84,7 +84,7 @@ class BlogCategoriesController extends Controller
     public function show($id)
     {
         $blog_category = BlogCategory::find($id);
-        return view('blog_categories.show',compact('blog_category'));
+        return view('Admin.blog_categories.show',compact('blog_category'));
     }
 
     /**
@@ -97,7 +97,7 @@ class BlogCategoriesController extends Controller
     {
         $blog_categories_parents = BlogCategory::where('parent_id', '=', null)->pluck('name','id');
         $blog_category = BlogCategory::find($id);
-        return view('blog_categories.edit',compact('blog_category','blog_categories_parents'));
+        return view('Admin.blog_categories.edit',compact('blog_category','blog_categories_parents'));
     }
 
     /**

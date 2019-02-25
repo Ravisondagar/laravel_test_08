@@ -18,10 +18,11 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin',],
 
 	Route::get('/', function () {
 	    return view('index');
-	})->name('home');
+	})->name('dashboard');
 
 	Route::resource('dashboard','DashboardController');
 	Route::get('orange','DashboardController@orange')->name('orange');
+	Route::get('jstask2','DashboardController@jstask2')->name('jstask2');
 	Route::resource('users','UsersController');
 	Route::post('userlogout','UsersController@logout')->name('userlogout');
 	Route::resource('projects','ProjectsController');
@@ -33,6 +34,8 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin',],
 	Route::resource('project-categories','ProjectCategoriesController');
 	Route::resource('task-categories','TaskCategoriesController');
 	Route::resource('tasks','TasksController');
+	Route::resource('tasks.task-logs','TaskLogsController');
+	Route::post('tasks-complate','TasksController@complate')->name('complate');
 	Route::resource('user-experience','UserExperiencesController');
 	Route::resource('teams','TeamsController');
 	Route::get('user-profile','UsersController@profile')->name('users.profile');

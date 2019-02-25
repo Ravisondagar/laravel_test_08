@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('Admin.layouts.front')
 @section('content')
 	<div class="container">
 		<div class="pd-ltr-20 height-100-p xs-pd-20-10">
@@ -35,6 +35,7 @@
 													<div class="col-lg-8 col-md-12 col-sm-12">
 														<div class="blog-caption">
 															<h4><a href="#">{!! $blog->name !!}</a></h4>
+															<h4>{!! $blog->blog_category->name !!}</h4>
 															<div class="blog-by">
 																<p>{!! $blog->description !!}</p>
 																<div class="pt-10">

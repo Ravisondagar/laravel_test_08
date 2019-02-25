@@ -13,12 +13,12 @@ class IndustriesController extends Controller
     public function index()
     {
         $industries = Industry::all(); 
-        return view('industries.index',compact('industries'));
+        return view('Admin.industries.index',compact('industries'));
     }
 
     public function create()
     {
-        return view('industries.add');
+        return view('Admin.industries.add');
     }
 
     public function store(Request $request)
@@ -57,13 +57,13 @@ class IndustriesController extends Controller
     public function show($id)
     {
         $industry = Industry::find($id);
-        return view('industries.show',compact('industry'));
+        return view('Admin.industries.show',compact('industry'));
     }
 
     public function edit($id)
     {
         $industry = Industry::find($id);
-        return view('industries.edit',compact('industry'));
+        return view('Admin.industries.edit',compact('industry'));
     }
 
     public function update(Request $request, $id)

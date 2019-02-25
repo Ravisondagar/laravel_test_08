@@ -19,8 +19,8 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all(); 
-        return view('tasks.index',compact('tasks'));
+        $tasks = Task::where('complate', '=', '0')->get(); 
+        return view('Admin.tasks.index',compact('tasks'));
     }
 
     /**
@@ -31,7 +31,7 @@ class TasksController extends Controller
     public function create()
     {
         $task_categories = TaskCategory::all()->pluck('id','name');
-        return view('tasks.add',compact('task_categories'));
+        return view('Admin.tasks.add',compact('task_categories'));
     }
 
     /**
@@ -75,6 +75,7 @@ class TasksController extends Controller
           $task->start_date = date('Y-m-d', strtotime($request->get('start_date')));
           $task->end_date = date('Y-m-d', strtotime($request->get('end_date')));
           $task->priority = $request->get('priority');
+          $task->complate = 0;
           $task->save();
           return redirect()->route('tasks.index')->withSuccess("Insert record successfully.");
         /*}
@@ -93,7 +94,7 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
-        return view('tasks.show',compact('task'));
+        return view('Admin.tasks.show',compact('task'));
     }
 
     /**
@@ -106,7 +107,7 @@ class TasksController extends Controller
     {
         $task_categories = TaskCategory::all()->pluck('id','name');
         $task = Task::find($id);
-        return view('tasks.edit',compact('task_categories','task'));
+        return view('Admin.tasks.edit',compact('task_categories','task'));
     }
 
     /**
@@ -166,5 +167,14 @@ class TasksController extends Controller
         $task = Task::find($id);
         $task->delete();
         return redirect()->route('tasks.index')->withSuccess('Deleted successfully');
+    }
+
+    public function complate(Request $request)
+    {
+      $task = Task::find($request->get('id'));
+      $task->complate = 1;
+      $task->save();
+
+      return redirect()->route('tasks.index');
     }
 }

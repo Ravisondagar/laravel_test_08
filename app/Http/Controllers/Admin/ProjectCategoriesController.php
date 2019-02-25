@@ -17,13 +17,13 @@ class ProjectCategoriesController extends Controller
   public function index()
   {
     $project_categories = ProjectCategory::all();
-    return view('project_categories.index',compact('project_categories'));
+    return view('Admin.project_categories.index',compact('project_categories'));
   }
 
   public function create()
   {
     $project_categories_parents = ProjectCategory::where('parent_id', '=', null)->pluck('name','id');
-    return view('project_categories.add',compact('project_categories_parents'));
+    return view('Admin.project_categories.add',compact('project_categories_parents'));
   }
 
   public function store(Request $request)
@@ -64,14 +64,14 @@ class ProjectCategoriesController extends Controller
   public function show($id)
   {
     $project_category = ProjectCategory::find($id);
-    return view('project_categories.show',compact('project_category'));
+    return view('Admin.project_categories.show',compact('project_category'));
   }
 
   public function edit($id)
   {
     $project_categories_parents = ProjectCategory::where('parent_id', '=', null)->pluck('name','id');
     $project_category = ProjectCategory::find($id);
-    return view('project_categories.edit',compact('project_category','project_categories_parents'));
+    return view('Admin.project_categories.edit',compact('project_category','project_categories_parents'));
   }
 
   public function update(Request $request, $id)

@@ -61,7 +61,7 @@ class BlogsController extends Controller
     {
         $blog = Blog::find(Input::get('id'));
         $blog_categories = BlogCategory::all();
-        return view('blogs.user_show',compact('blog','blog_categories'));
+        return view('front.blogs.user_show',compact('blog','blog_categories'));
     }
 
     /**

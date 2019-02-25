@@ -17,13 +17,13 @@ class ClientsController extends Controller
   public function index()
   {
     $clients = Client::all();
-    return view('clients.index',compact('clients'));
+    return view('Admin.clients.index',compact('clients'));
   }
 
   public function create()
   {
     $industries = Industry::all()->pluck('name','id');
-    return view('clients.add',compact('industries'));
+    return view('Admin.clients.add',compact('industries'));
   }
 
   public function store(Request $request)
@@ -80,14 +80,14 @@ class ClientsController extends Controller
   public function show($id)
   {
     $client = Client::find($id);
-    return view('clients.show',compact('client'));
+    return view('Admin.clients.show',compact('client'));
   }
 
   public function edit($id)
   {
     $industries = Industry::all()->pluck('name','id');
     $client = Client::find($id);
-    return view('clients.edit',compact('client','industries'));
+    return view('Admin.clients.edit',compact('client','industries'));
   }
 
   public function update(Request $request, $id)

@@ -14,12 +14,12 @@ class TaskCategoriesController extends Controller
     public function index()
     {
         $task_categories = TaskCategory::all(); 
-        return view('task_categories.index',compact('task_categories'));
+        return view('Admin.task_categories.index',compact('task_categories'));
     }
 
     public function create()
     {
-        return view('task_categories.add');
+        return view('Admin.task_categories.add');
     }
 
     public function store(Request $request)
@@ -56,13 +56,13 @@ class TaskCategoriesController extends Controller
     public function show($id)
     {
         $task_category = TaskCategory::find($id);
-        return view('task_categories.show',compact('task_category'));
+        return view('Admin.task_categories.show',compact('task_category'));
     }
 
     public function edit($id)
     {
         $task_category = TaskCategory::find($id);
-        return view('task_categories.edit',compact('task_category'));
+        return view('Admin.task_categories.edit',compact('task_category'));
     }
 
     public function update(Request $request, $id)

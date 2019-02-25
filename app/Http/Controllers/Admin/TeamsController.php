@@ -19,7 +19,7 @@ class TeamsController extends Controller
     public function index()
     {
         $teams = Team::select('department_id','team_lead')->distinct()->get();
-        return view('teams.index',compact('teams'));
+        return view('Admin.teams.index',compact('teams'));
     }
 
     public function create()
@@ -27,7 +27,7 @@ class TeamsController extends Controller
         $departments = Department::all()->pluck('name','id');
         $team_leads = User::where('team_lead', '=', 'yes')->pluck('name','id');
         $members = User::where('team_lead', '=', 'no')->pluck('name','id');
-        return view('teams.add',compact('departments','team_leads','members'));
+        return view('Admin.teams.add',compact('departments','team_leads','members'));
     }
 
     public function store(Request $request)
@@ -75,7 +75,7 @@ class TeamsController extends Controller
     {
         $team = Team::select('department_id','team_lead')->where('department_id', '=', $id)->distinct()->get()->first();
         $members = Team::where('department_id', '=', $id)->get();
-        return view('teams.show',compact('members','team'));
+        return view('Admin.teams.show',compact('members','team'));
     }
 
     public function edit($id)
@@ -89,7 +89,7 @@ class TeamsController extends Controller
             array_push($members_select, $value->members->name);
         }
         $team = Team::select('department_id','team_lead')->where('department_id', '=', $id)->distinct()->get()->first();
-        return view('teams.edit',compact('departments','team_leads','members','members_select','id','team'));
+        return view('Admin.teams.edit',compact('departments','team_leads','members','members_select','id','team'));
     }
 
     public function update(Request $request, $id)

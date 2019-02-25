@@ -28,7 +28,7 @@ class UsersController extends Controller
     public function index()
     {
       $users = User::where('role', '=', 'user')->get();
-      return view('users.index',compact('users'));
+      return view('Admin.users.index',compact('users'));
     }
 
     /**
@@ -40,7 +40,7 @@ class UsersController extends Controller
     {
       $departments = Department::all()->pluck('name','id');
       $designations = Designation::all()->pluck('name','id');
-      return view('users.add',compact('departments','designations'));
+      return view('Admin.users.add',compact('departments','designations'));
     }
 
     /**
@@ -146,7 +146,7 @@ class UsersController extends Controller
     {
       $user = User::find($id);
       $blogs = Blog::where('user_id', '=', $id)->get();
-      return view('users.show',compact('user','blogs'));
+      return view('Admin.users.show',compact('user','blogs'));
     }
 
     /**
@@ -160,7 +160,7 @@ class UsersController extends Controller
       $departments = Department::all()->pluck('name','id');
       $designations = Designation::all()->pluck('name','id');
       $user = User::find($id);
-      return view('users.edit',compact('user','departments','designations'));
+      return view('Admin.users.edit',compact('user','departments','designations'));
     }
 
     /**
@@ -247,7 +247,7 @@ class UsersController extends Controller
       $user = User::find(Auth::user()->id);
       $departments = Department::all()->pluck('name','id');
       $designations = Designation::all()->pluck('name','id');
-      return view('Users.profile',compact('user','departments','designations'));
+      return view('Admin.Users.profile',compact('user','departments','designations'));
     }
 
     public function post_profile(Request $request) 

@@ -14,13 +14,13 @@ class ProjectsController extends Controller
   public function index()
   {
     $projects = Project::all(); 
-    return view('projects.index',compact('projects'));
+    return view('Admin.projects.index',compact('projects'));
   }
 
   public function create()
   {
     $users = User::all()->pluck('id','name');
-    return view('projects.add',compact('users'));
+    return view('Admin.projects.add',compact('users'));
   }
 
   public function store(Request $request)
@@ -64,14 +64,14 @@ class ProjectsController extends Controller
   public function show($id)
   {
     $project = Project::find($id);
-    return view('projects.show',compact('project'));
+    return view('Admin.projects.show',compact('project'));
   }
 
   public function edit($id)
   {
     $users = User::all()->pluck('id','name');
     $project = Project::find($id);
-    return view('projects.edit',compact('users','project'));
+    return view('Admin.projects.edit',compact('users','project'));
   }
 
   public function update(Request $request, $id)

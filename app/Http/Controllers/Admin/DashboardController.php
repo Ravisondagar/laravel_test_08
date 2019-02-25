@@ -148,4 +148,9 @@ class DashboardController extends Controller
     {
         return view('orange');
     }
+
+    public function jstask2()
+    {
+        return view('jstask2');
+    }
 }
