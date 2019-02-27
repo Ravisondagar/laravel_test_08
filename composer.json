@@ -18,7 +18,8 @@
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "1.26.3",
-        "unisharp/laravel-ckeditor": "^4.7"
+        "unisharp/laravel-ckeditor": "^4.7",
+        "deployer/deployer"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
