@@ -21,15 +21,19 @@
 				<table class="table table-striped">
 					<tbody>
 						<tr>
-							<th scope="col">Name</th>
-							<td>{!! $blog->name !!}</td>
-						</tr>
-						<tr>
 							<th scope="col">User Name</th>
 							<td>{!! $blog->user->name !!}</td>
 						</tr>
 						<tr>
-							<th scope="col">Name</th>
+							<th scope="col">Blog Name</th>
+							<td>{!! $blog->name !!}</td>
+						</tr>
+						<tr>
+							<th scope="col">Blog Category Name</th>
+							<td>{!! $blog->blog_category->name !!}</td>
+						</tr>
+						<tr>
+							<th scope="col">Description</th>
 							<td>{!! $blog->description !!}</td>
 						</tr>
 					</tbody>

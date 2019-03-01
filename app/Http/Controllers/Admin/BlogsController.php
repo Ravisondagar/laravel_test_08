@@ -13,6 +13,7 @@ use App\Imports\BlogsImport;
 use App\Exports\BlogsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use URL;
+use PHPExcel;
 
 
 class BlogsController extends Controller
@@ -188,6 +189,7 @@ class BlogsController extends Controller
 
     public function export() 
     {
-      return Excel::download(new BlogsExport, 'blogs.xlsx');
+        
+        return Excel::download(new BlogsExport, 'blogs.xlsx');
     }
 }
