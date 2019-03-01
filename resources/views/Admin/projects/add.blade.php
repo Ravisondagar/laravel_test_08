@@ -35,7 +35,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Select User</label>
 							<div class="col-sm-12 col-md-10">
-								<select class="custom-select col-12" name="user_id">
+								<select class="form-control selectpicker" name="user_id[]" multiple data-selected-text-format="count">
 									<option selected="" value="">Choose User</option>
 									@foreach($users as $key => $user )
 										<option value="{!! $user!!}">{!! $key !!}</option>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Former;
 use Validator;
+use App\UserProject;
+use Auth;
 
 class ProjectsController extends Controller
 {
@@ -50,9 +52,16 @@ class ProjectsController extends Controller
     {
       $project = New Project;
       $project->name = $request->get('name');
-      $project->user_id = $request->get('user_id');
+      $project->user_id = Auth::user()->id;
       $project->hours = $request->get('hours');
       $project->save();
+      $users = $request->get('user_id');
+      foreach ($users as $key => $user) {
+        $user_project = new UserProject;
+        $user_project->project_id = $project->id;
+        $user_project->user_id = $user;
+        $user_project->save();
+      }
       return redirect()->route('projects.index')->withSuccess("Insert record successfully.");
     }
     catch(\Exception $e)
