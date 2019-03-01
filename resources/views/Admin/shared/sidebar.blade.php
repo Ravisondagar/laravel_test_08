@@ -92,6 +92,12 @@
 							<span class="fa fi-home"></span><span class="mtext">Blogs ({!! $blog_count !!})</span>
 						</a>
 					</li>
+
+					<li>
+						<a href="{!! route('user_project') !!}" class="dropdown-toggle no-arrow">
+							<span class="fa fi-home"></span><span class="mtext">Project</span>
+						</a>
+					</li>
 					<li>
 						<a href="{!! route('tasks.index') !!}" class="dropdown-toggle no-arrow">
 							<span class="fa fi-home"></span><span class="mtext">Tasks ({!! $user->tasks->count() !!})</span>

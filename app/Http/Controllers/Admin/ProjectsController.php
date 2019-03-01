@@ -126,4 +126,10 @@ class ProjectsController extends Controller
     $project->delete();
     return redirect()->route('projects.index')->withSuccess('Deleted successfully');
   }
+
+  public function user_project()
+  {
+    $user_projects = UserProject::where('user_id', '=', Auth::user()->id)->get();
+    return view('User.projects.index',compact('user_projects'));
+  }
 }

@@ -26,6 +26,7 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin',],
 	Route::resource('users','UsersController');
 	Route::post('userlogout','UsersController@logout')->name('userlogout');
 	Route::resource('projects','ProjectsController');
+	Route::get('user-projects','ProjectsController@user_project')->name('user_project');
 	Route::resource('industries','IndustriesController');
 	Route::resource('departments','DepartmentsController');
 	Route::resource('departments.team-leads','TeamLeadsController');
