@@ -34,8 +34,8 @@ Route::group(['middleware'=>['auth'],'prefix'=>'admin','namespace' => 'Admin',],
 	Route::resource('clients','ClientsController');
 	Route::resource('project-categories','ProjectCategoriesController');
 	Route::resource('task-categories','TaskCategoriesController');
-	Route::resource('tasks','TasksController');
-	Route::resource('tasks.task-logs','TaskLogsController');
+	Route::resource('projects.tasks','TasksController');
+	Route::resource('projects.tasks.task-logs','TaskLogsController');
 	Route::post('tasks-complate','TasksController@complate')->name('complate');
 	Route::resource('user-experience','UserExperiencesController');
 	Route::resource('teams','TeamsController');

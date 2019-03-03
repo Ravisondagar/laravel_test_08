@@ -98,11 +98,11 @@
 							<span class="fa fi-home"></span><span class="mtext">Project</span>
 						</a>
 					</li>
-					<li>
-						<a href="{!! route('tasks.index') !!}" class="dropdown-toggle no-arrow">
+					{{-- <li>
+						<a href="{!! route('projects.tasks.index') !!}" class="dropdown-toggle no-arrow">
 							<span class="fa fi-home"></span><span class="mtext">Tasks ({!! $user->tasks->count() !!})</span>
 						</a>
-					</li>
+					</li> --}}
 					<li>
 						<a href="{!! route('jstask2') !!}" class="dropdown-toggle no-arrow">
 							<span class="fa fi-home"></span><span class="mtext">Jstask2</span>

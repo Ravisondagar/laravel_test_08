@@ -10,7 +10,7 @@
 					<p class="mb-30 font-14"></p>
 				</div>	
 				<div class="pull-right">
-					<a href="{!! route('tasks.index') !!}" data-toggle="tooltip" title="Back to Tasks" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+					<a href="{!! route('projects.tasks.index',$project_id) !!}" data-toggle="tooltip" title="Back to Tasks" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
 				</div>
 			</div>
 			<div class="table-responsive">

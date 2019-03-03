@@ -13,7 +13,8 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{!! route('dashboard.index') !!}">Home</a></li>
-									<li class="breadcrumb-item"><a href="{!! route('tasks.index') !!}">tasks</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.index') !!}">Project</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.tasks.index',$project_id) !!}">tasks</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Add task</li>
 								</ol>
 							</nav>
@@ -27,10 +28,10 @@
 							<h4 class="text-blue">Add task</h4>
 						</div>
 						<div class="pull-right">
-							<a href="{!! route('tasks.index') !!}" data-toggle="tooltip" title="Back to tasks" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+							<a href="{!! route('projects.tasks.index',$project_id) !!}" data-toggle="tooltip" title="Back to tasks" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
 						</div>
 					</div><br>
-					<form method="post" action="{!! route('tasks.store') !!}">
+					<form method="post" action="{!! route('projects.tasks.store',$project_id) !!}">
 						@csrf
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Select Task Category</label>
@@ -46,7 +47,7 @@
 						<div class="form-group row">
 							<label class="col-sm-12 col-md-2 col-form-label">Name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="" name="name">
+								<input class="form-control" type="text" placeholder="" name="name" value="{!! old('name') !!}">
 								@if($errors->has('name'))<span>{!! $errors->first('name') !!}</span>@endif
 							</div>
 						</div>

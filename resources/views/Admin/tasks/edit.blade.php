@@ -13,6 +13,7 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{!! route('dashboard.index') !!}">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.index') !!}">Project</a></li>
 									<li class="breadcrumb-item"><a href="{!! route('tasks.index') !!}">tasks</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Edit task</li>
 								</ol>

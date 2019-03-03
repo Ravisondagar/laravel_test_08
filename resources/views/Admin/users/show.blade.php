@@ -88,6 +88,18 @@
 								</tr>
 							@endforeach
 						</table>
+						<table border="1" class="table table-striped table-bordered">
+							<th scope="row">No</th>
+							<th scope="row">Project name</th>
+							<th scope="row">View</th>
+							@foreach($user->userprojects as $key => $project)
+								<tr>
+									<td>{!! $key+1 !!}</td>
+									<td>{!! $project->name !!}</td>
+									<td><a href="{!! route('projects.show',['id' => $project->id, 'from' => 'user']) !!}" class="btn btn-primary">Show</a></td>
+								</tr>
+							@endforeach
+						</table>
 					</tbody>
 				</table>
 			</div>

@@ -17,10 +17,10 @@ class TaskLogsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($task_id)
+    public function index($project_id, $task_id)
     {
         $task_logs = TaskLog::where('task_id', '=', $task_id)->get(); 
-        return view('Admin.task_logs.index',compact('task_logs','task_id'));
+        return view('Admin.task_logs.index',compact('task_logs','task_id','project_id'));
     }
 
     /**
@@ -28,9 +28,9 @@ class TaskLogsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($project_id,$id)
     {
-        return view('Admin.task_logs.add',compact('id'));
+        return view('Admin.task_logs.add',compact('id','project_id'));
     }
 
     /**
@@ -40,7 +40,7 @@ class TaskLogsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request,$task_id)
+    public function store(Request $request,$project_id,$task_id)
     {
         //Rules for validation
         $rules=[
@@ -79,11 +79,11 @@ class TaskLogsController extends Controller
           $task_log->billable = $request->get('billable');
           $task_log->spent_time = date('h:i',$spent_time);
           $task_log->save();
-          return redirect()->route('tasks.task-logs.index',['task_id' => $task_id])->withSuccess("Insert record successfully.");
+          return redirect()->route('projects.tasks.task-logs.index',['project_id' => $project_id,'task_id' => $task_id])->withSuccess("Insert record successfully.");
         /*}
         catch(\Exception $e)
         {
-          return redirect()->route('tasks.index')->withError('Something went wrong, Please try after sometime.');
+          return redirect()->route('projects.tasks.index')->withError('Something went wrong, Please try after sometime.');
         }*/
     }
 
@@ -93,10 +93,10 @@ class TaskLogsController extends Controller
      * @param  \App\TaskLog  $taskLog
      * @return \Illuminate\Http\Response
      */
-    public function show($task_id,$task_log_id)
+    public function show($project_id,$task_id,$task_log_id)
     {
         $task_log = TaskLog::find($task_log_id);
-        return view('Admin.task_logs.show',compact('task_log','task_id'));
+        return view('Admin.task_logs.show',compact('project_id','task_log','task_id'));
     }
 
     /**
@@ -105,11 +105,11 @@ class TaskLogsController extends Controller
      * @param  \App\TaskLog  $taskLog
      * @return \Illuminate\Http\Response
      */
-    public function edit($task_id)
+    public function edit($project_id,$task_id)
     {
         $task_log = TaskLog::find($task_id);
         Former::populate($task_log);
-        return view('Admin.task_logs.edit',compact('task_log','task_id'));
+        return view('Admin.task_logs.edit',compact('project_id','task_log','task_id'));
     }
 
     /**
@@ -119,7 +119,7 @@ class TaskLogsController extends Controller
      * @param  \App\TaskLog  $taskLog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $task_id, $task_log_id)
+    public function update(Request $request,$project_id, $task_id, $task_log_id)
     {
         //Rules for validation
         $rules=[
@@ -152,11 +152,11 @@ class TaskLogsController extends Controller
           $task_log->date = date('Y-m-d', strtotime($request->get('date')));
           $task_log->spent_time = date('h:i',$spent_time);
           $task_log->update($request->except('date','spent_time'));
-          return redirect()->route('tasks.task-logs.index',['task_id' => $task_id])->withSuccess("Insert record successfully.");
+          return redirect()->route('projects.tasks.task-logs.index',['project_id' => $project_id,'task_id' => $task_id])->withSuccess("Insert record successfully.");
         /*}
         catch(\Exception $e)
         {
-          return redirect()->route('tasks.index')->withError('Something went wrong, Please try after sometime.');
+          return redirect()->route('projects.tasks.index')->withError('Something went wrong, Please try after sometime.');
         }*/
     }
 
@@ -166,11 +166,11 @@ class TaskLogsController extends Controller
      * @param  \App\TaskLog  $taskLog
      * @return \Illuminate\Http\Response
      */
-    public function destroy($task_id,$task_blog_id)
+    public function destroy($project_id,$task_id,$task_blog_id)
     {
         $taskblog = TaskLog::find($task_blog_id);
         $taskblog->delete();
 
-        return redirect()->route('tasks.task-logs.index',['task_id' => $task_id])->withSuccess('Deleted successfully');
+        return redirect()->route('projects.tasks.task-logs.index',['project_id' => $project_id,'task_id' => $task_id])->withSuccess('Deleted successfully');
     }
 }

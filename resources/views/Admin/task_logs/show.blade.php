@@ -11,7 +11,7 @@
 				</div>	
 				<div class="pull-right">
 					<div class="pull-right">
-							<a href="{!! route('tasks.task-logs.index',['task_id' => $task_id]) !!}" data-toggle="tooltip" title="Back to task logs" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+							<a href="{!! route('projects.tasks.task-logs.index',['project_id' => $project_id,'task_id' => $task_id]) !!}" data-toggle="tooltip" title="Back to task logs" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
 					</div>
 				</div>
 			</div>

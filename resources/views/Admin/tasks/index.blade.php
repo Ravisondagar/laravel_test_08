@@ -13,6 +13,7 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{!! route('dashboard.index') !!}">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.index') !!}">Project</a></li>
 									<li class="breadcrumb-item active" aria-current="page">tasks</li>
 								</ol>
 							</nav>
@@ -36,7 +37,7 @@
 							<h5 class="text-blue">tasks</h5>
 						</div>
 						<div class="text-right">
-							<a href="{!! route('tasks.create') !!}" class="btn btn-primary">Add task</a>
+							<a href="{!! route('projects.tasks.create',$project_id) !!}" class="btn btn-primary">Add task</a>
 						</div>
 					</div>
 					<div class="row">
@@ -63,10 +64,10 @@
 												<i class="fa fa-ellipsis-h"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="{!! route('tasks.show',$task->id) !!}"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="{!! route('tasks.edit',$task->id) !!}"><i class="fa fa-pencil"></i> Edit</a>
-												<a class="dropdown-item" href="{!! route('tasks.task-logs.index',$task->id) !!}"><i class="fa fa-pencil"></i> Task logs</a>
-												{!! Former::open()->action( URL::route("tasks.destroy",$task->id) )->method('delete')->class('form'.$task->id) !!}
+												<a class="dropdown-item" href="{!! route('projects.tasks.show',['project_id' => $project_id ,'task_id' =>$task->id]) !!}"><i class="fa fa-eye"></i> View</a>
+												<a class="dropdown-item" href="{!! route('projects.tasks.edit',['project_id' => $project_id ,'task_id' =>$task->id]) !!}"><i class="fa fa-pencil"></i> Edit</a>
+												<a class="dropdown-item" href="{!! route('projects.tasks.task-logs.index',['project_id' => $project_id ,'task_id' => $task->id]) !!}"><i class="fa fa-pencil"></i> Task logs</a>
+												{!! Former::open()->action( URL::route("projects.tasks.destroy",['project_id' => $project_id,'task_id' => $task->id]) )->method('delete')->class('form'.$task->id) !!}
 													<a class="dropdown-item submit" href="javascript:;" data-id="{{$task->id}}" ><i class="fa fa-trash"></i> Delete</a>
 												{!! Former::close() !!}
 											</div>
@@ -86,16 +87,16 @@
 <script type="text/javascript">
 		$('.complate').click(function(){
 			var id = $(this).val();
-			alert(id);
 			$.ajax({
 				url: "{!! route('complate') !!}",
 				type: 'post',
 				data:{
-					'id': id, 
+					'id': id,
+					'project_id':{!! $project_id !!},
 					"_token": "{!! csrf_token() !!}",
 				},
 				success:function(response) {
-					location.reload();
+					window.location.reload();
 					
 				},
 				error: function(data) {

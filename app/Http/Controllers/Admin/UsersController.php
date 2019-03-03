@@ -16,6 +16,7 @@ use App\Blog;
 use App\Imports\UsersImport;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\UserProject;
 
 
 class UsersController extends Controller

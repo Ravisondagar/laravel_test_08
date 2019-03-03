@@ -13,6 +13,8 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{!! route('dashboard.index') !!}">Home</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.index') !!}">Project</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.tasks.index',$project_id) !!}">task</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Task Logs</li>
 								</ol>
 							</nav>
@@ -36,7 +38,7 @@
 							<h5 class="text-blue">Task Logs</h5>
 						</div>
 						<div class="text-right">
-							<a href="{!! route('tasks.task-logs.create', ['task_id' => $task_id]) !!}" class="btn btn-primary">Add Task Log</a>
+							<a href="{!! route('projects.tasks.task-logs.create', ['project_id' => $project_id ,'task_id' => $task_id]) !!}" class="btn btn-primary">Add Task Log</a>
 						</div>
 					</div>
 					<div class="row">
@@ -63,9 +65,9 @@
 												<i class="fa fa-ellipsis-h"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="{!! route('tasks.task-logs.show',['task_id' => $task_id, 'task_log_id' => $task_log->id]) !!}"><i class="fa fa-eye"></i> View</a>
-												<a class="dropdown-item" href="{!! route('tasks.task-logs.edit',['task_id' => $task_id, 'task_log_id' => $task_log->id]) !!}"><i class="fa fa-pencil"></i> Edit</a>
-												{!! Former::open()->action( URL::route("tasks.task-logs.destroy",['task_id' => $task_id, 'task_log_id' => $task_log->id]) )->method('delete')->class('form'.$task_log->id) !!}
+												<a class="dropdown-item" href="{!! route('projects.tasks.task-logs.show',['project_id' => $project_id,'task_id' => $task_id, 'task_log_id' => $task_log->id]) !!}"><i class="fa fa-eye"></i> View</a>
+												<a class="dropdown-item" href="{!! route('projects.tasks.task-logs.edit',['project_id' => $project_id,'task_id' => $task_id, 'task_log_id' => $task_log->id]) !!}"><i class="fa fa-pencil"></i> Edit</a>
+												{!! Former::open()->action( URL::route("projects.tasks.task-logs.destroy",['project_id' => $project_id,'task_id' => $task_id, 'task_log_id' => $task_log->id]) )->method('delete')->class('form'.$task_log->id) !!}
 													<a class="dropdown-item submit" href="javascript:;" data-id="{{$task_log->id}}" ><i class="fa fa-trash"></i> Delete</a>
 												{!! Former::close() !!}
 											</div>

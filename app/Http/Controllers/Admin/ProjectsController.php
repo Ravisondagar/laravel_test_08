@@ -21,7 +21,7 @@ class ProjectsController extends Controller
 
   public function create()
   {
-    $users = User::all()->pluck('id','name');
+    $users = User::where('role', '=', 'user')->pluck('id','name');
     return view('Admin.projects.add',compact('users'));
   }
 
@@ -78,7 +78,7 @@ class ProjectsController extends Controller
 
   public function edit($id)
   {
-    $users = User::all()->pluck('id','name');
+    $users = User::where('role', '=', 'user')->pluck('id','name');
     $project = Project::find($id);
     return view('Admin.projects.edit',compact('users','project'));
   }
@@ -130,6 +130,7 @@ class ProjectsController extends Controller
   public function user_project()
   {
     $user_projects = UserProject::where('user_id', '=', Auth::user()->id)->get();
+    /*dd($user_projects->project);*/
     return view('User.projects.index',compact('user_projects'));
   }
 }

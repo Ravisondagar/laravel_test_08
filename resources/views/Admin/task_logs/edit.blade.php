@@ -13,7 +13,9 @@
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{!! route('dashboard.index') !!}">Home</a></li>
-									<li class="breadcrumb-item"><a href="{!! route('tasks.task-logs.index',['task_id' => $task_id]) !!}">Task Logs</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.index') !!}">Project</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.tasks.index',$project_id) !!}">task</a></li>
+									<li class="breadcrumb-item"><a href="{!! route('projects.tasks.task-logs.index',['project_id' => $project_id,'task_id' => $task_id]) !!}">Task Logs</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Edit Task log</li>
 								</ol>
 							</nav>
@@ -27,10 +29,10 @@
 							<h4 class="text-blue">Edit Task log</h4>
 						</div>
 						<div class="pull-right">
-							<a href="{!! route('tasks.task-logs.index',['task_id' => $task_id]) !!}" data-toggle="tooltip" title="Back to task logs" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
+							<a href="{!! route('projects.tasks.task-logs.index',['project_id' => $project_id,'task_id' => $task_id]) !!}" data-toggle="tooltip" title="Back to task logs" class="btn btn-sm btn-primary btn-sm" rel="content-y"  role="button"><i class="fa fa-arrow-left"></i>Back</a>
 						</div>
 					</div><br>
-					<form method="post" action="{!! route('tasks.task-logs.update',['task_id' => $task_id,'task_log_id' => $task_log->id]) !!}">
+					<form method="post" action="{!! route('projects.tasks.task-logs.update',['project_id' => $project_id,'task_id' => $task_id,'task_log_id' => $task_log->id]) !!}">
 						@csrf
 						@method('PATCH')
 						<div class="form-group row">

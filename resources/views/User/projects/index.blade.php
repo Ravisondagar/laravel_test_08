@@ -52,8 +52,8 @@
 								@foreach($user_projects as $user_project)
 								<tr>
 									<td class="table-plus">{!! $user_project->id !!}</td>
-									<td>{!! $user_project->project_id !!}</td>
-									<td>{!! $user_project->user_id !!}</td>
+									<td><a href="{!! route('projects.tasks.index',$user_project->project->id) !!}" >{!! $user_project->project->name !!}</a></td>
+									<td>{!! $user_project->user->name !!}</td>
 								</tr>
 								@endforeach
 							</tbody>
