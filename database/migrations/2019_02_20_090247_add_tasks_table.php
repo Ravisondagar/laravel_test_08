@@ -17,6 +17,8 @@ class AddTasksTable extends Migration
             $table->integer('task_category_id')->unsigned()->after('user_id');
             $table->foreign('task_category_id')->references('id')->on('task_categories')->onDelete('cascade');
             $table->integer('complate')->nullable();
+            $table->integer('project_id')->unsigned();
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

@@ -19,8 +19,11 @@ class TasksController extends Controller
      */
     public function index($project_id)
     {
-        $tasks = Task::where('complate', '=', '0')->where('project_id', '=', $project_id)->get(); 
-        return view('Admin.tasks.index',compact('tasks','project_id'));
+      $tasks = Task::where('complate', '=', '0')->where('project_id', '=', $project_id)->get();
+
+      //dd($billable = $tasks[0]->tasklogs);
+
+      return view('Admin.tasks.index',compact('tasks','project_id'));
     }
 
     /**
